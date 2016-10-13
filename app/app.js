@@ -38,12 +38,7 @@ app.config([
             .when('/listings/new-listing', {
                 title: 'Create A New Listing',
                 templateUrl: 'partials/new-listing.html',
-                controller: 'ListingCtrl',
-                resolve: {
-                    postPromise: ['listings', function(listings){
-                        return listings.getAll();
-                    }]
-                }
+                controller: 'ListingCtrl'
             })
             .otherwise({
                 redirectTo: '/'
