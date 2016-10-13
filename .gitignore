@@ -27,6 +27,7 @@
 *.sql
 *.sqlite
 config.php
+passwordHash.php
 
 # OS generated files #
 ######################
