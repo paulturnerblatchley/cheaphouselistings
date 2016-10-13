@@ -1,0 +1,65 @@
+<div class="home-container">
+	<div id="bg" class="bg"></div>
+	<div class="jumbotron">
+		<div class="container-fluid">
+			<h1>This is a test</h1>
+			<p>Let's see how this works</p>
+		</div>
+	</div>
+	<main class="home-content">
+		<div class="container-fluid">
+			<h2>Find a house near you</h2>
+			<div ng-controller="formCtrl" class="search-form-box">
+				<form ng-form name="home-search" class="container-fluid" role="form">
+					<div class="form-group city-search col-sm-3">
+						<input class="form-control" type="text" placeholder="City" >
+					</div>
+					<div class="form-group price-search col-sm-3">
+						<select class="form-control" name="cost">
+							<option value="0">$0+</option>
+							<option value=".1">$100,000+</option>
+							<option value=".3">$300,000+</option>
+							<option value=".5">$500,000+</option>
+							<option value="1">$1,000,000+</option>
+						</select>
+					</div>
+					<div class="form-group bed-search col-sm-2">
+						<select class="form-control" name="beds">
+							<option value="1">1 Bed</option>
+							<option value="2">2 Beds</option>
+							<option value="3">3 Beds</option>
+							<option value="4">4 Beds</option>
+							<option value="5+">5+ Beds</option>
+						</select>
+					</div>
+					<div class="form-group bath-search col-sm-2">
+						<select class="form-control" name="baths">
+							<option value="1">1 Bath</option>
+							<option value="2">2 Baths</option>
+							<option value="3">3 Baths</option>
+							<option value="4">4 Baths</option>
+							<option value="5+">5+ Baths</option>
+						</select>
+					</div>
+					<div class="form-group submit-search col-sm-2">
+						<button class="btn btn-primary" type="submit">Submit</button>
+					</div>
+				</form>
+			</div>
+			<div class="row col-sm-12">
+				<div class="col-sm-4 text-center">
+					<i class="glyphicon glyphicon-home"></i>
+					<p>Find the a large selection of house with great potential in your neightborhood.</p>
+				</div>
+				<div class="col-sm-4 text-center">
+					<i class="glyphicon glyphicon-home"></i>
+					<p>Find the a large selection of house with great potential in your neightborhood.</p>
+				</div>
+				<div class="col-sm-4 text-center">
+					<i class="glyphicon glyphicon-home"></i>
+					<p>Find the a large selection of house with great potential in your neightborhood.</p>
+				</div>
+			</div>
+		</div>
+	</main>
+</div>

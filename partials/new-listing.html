@@ -1,0 +1,94 @@
+<div class="breadcrumbs" id="breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <a href="#">Home</a>
+        </li>
+        <li><a href="/#/listings">Listings</a></li>
+        <li class="active">Create A Listing</li>
+    </ul>
+</div>
+<div class="page-content">
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-1">
+            <div id="login-box" class="login-box visible widget-box no-border">
+                <div class="widget-body">
+                    <div class="widget-main">
+                        <h4>
+                            Create a New Listing
+                        </h4>
+                        <br/>
+                        <form name="newListingForm" class="form-horizontal" role="form" ng-submit="addListing()">
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label no-padding-right" for="address">Address</label>
+                                <div class="col-sm-7">
+                                    <span class="block input-icon input-icon-right">
+                                        <input type="text" class="form-control" placeholder="Address" name="address" ng-model="address" focus required/> 
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label no-padding-right" for="city">City</label>
+                                <div class="col-sm-7">
+                                    <span class="block input-icon input-icon-right">
+                                <input type="text" class="form-control" name="city" placeholder="city" ng-model="city" required/>
+                            </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label no-padding-right" for="price">Price</label>
+                                <div class="col-sm-7">
+                                    <span class="block input-icon input-icon-right">
+                                <input type="text" class="form-control" name="price" placeholder="Price" ng-model="price" required/>
+                            		</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label no-padding-right" for="sqft">Square Footage</label>
+                                <div class="col-sm-7">
+                                    <span class="block input-icon input-icon-right">
+                                <input type="text" class="form-control" name="sqft" placeholder="Sq Ft" ng-model="sqft" required/>
+                            </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label no-padding-right" for="lotsize">Lot Size</label>
+                                <div class="col-sm-7">
+                                    <span class="block input-icon input-icon-right">
+                                <input type="text" class="form-control" placeholder="Lot Size" name="lotsize" ng-model="lotsize" required/>
+                            </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label no-padding-right" for="beds">Bedrooms</label>
+                                <div class="col-sm-7">
+                                    <span class="block input-icon input-icon-right">
+                                <input type="text" class="form-control" placeholder="Beds" name="beds" ng-model="beds" required/>
+                            </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label no-padding-right" for="baths">Bathrooms</label>
+                                <div class="col-sm-7">
+                                    <span class="block input-icon input-icon-right">
+                                <input type="text" class="form-control" placeholder="Baths" name="baths" ng-model="baths" required/>
+                            </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <span class="lbl col-sm-5"> </span>
+                                <div class="col-sm-7">
+                                    <button type="submit" class="width-35 pull-right btn btn-sm btn-primary"  data-ng-disabled="newListingForm.$invalid">
+                                        Create
+                                    </button>
+                                </div>
+                            </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- /.page-content -->

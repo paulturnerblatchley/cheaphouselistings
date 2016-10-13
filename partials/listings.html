@@ -1,0 +1,26 @@
+<div class="breadcrumbs" id="breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <a href="#">Home</a>
+        </li>
+        <li class="active">Listings</li>
+    </ul>
+</div>
+<div class="page-content">
+	<div class="container">
+		<div class="page-header">
+			<h1>Listings</h1>
+		</div>
+		<div ng-repeat="listing in listings">
+			<h2>{{listing.address}}</h2>
+			<h5>{{listing.city}}</h5>
+			<p>Offered at {{listing.price}}</p>
+			<ul>
+				<li>{{listing.beds}}</li>
+				<li>{{listing.baths}}</li>
+				<li>{{listing.sqft}}</li>
+				<li>{{listing.lotsize}}</li>
+			</ul>
+		</div>
+	</div>
+</div>
