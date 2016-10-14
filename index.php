@@ -34,7 +34,7 @@
   <script src="js/angular-animate.min.js" ></script>
   <script src="js/toaster.js"></script>
   <script src="js/jquery-3.1.1.slim.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src="js/bootstrap.min.js"></script>
   <script src="app/app.js"></script>
   <script src="app/data.js"></script>
   <script src="app/directives.js"></script>

@@ -1,7 +1,8 @@
+
+var serviceBase = 'api/v1/';
+
 app.factory("auth", ['$http', 'toaster',
     function ($http, toaster) { // This service connects to our REST API
-
-        var serviceBase = 'api/v1/';
 
         var obj = {};
         obj.toast = function (data) {
@@ -34,26 +35,38 @@ app.factory("auth", ['$http', 'toaster',
 app.factory("listings", ['$http', 'auth', 'toaster',
     function($http, auth, toaster) {
 
-        var serviceBase = 'api/v1/';
 
         var o = {
             listings: []
         };
 
-        o.getAll = function() {
-            return $http.get(serviceBase + 'listings').success(function(data) {
-                angular.copy(data, o.listings);
-            });
-        };
-
-        o.create = function(listing) {
-            return $http.post(serviceBase + 'listings', listing)
-            .then(function(res) {
-                o.listings.push(res);
-                toaster.pop(res.data.status, "", res.data.message, 10000, 'trustedHtml');
-            });
+        o.getListings = function(q) {
+          return $http.get(serviceBase + q).then(function(results) {
+            o.listings = results.data;
+            return results.data;
+          });
         };
 
         return o;
     }
+]);
+
+app.factory("singlelisting", ['$http',
+  function($http) {
+      var s = {
+        listing: []
+      };
+
+      s.get = function(q, lid) {
+        return $http.get(serviceBase + q).then(function(results) {
+          for(i=0;i<results.data.length;i++){
+              if (results.data[i].lid == lid) {
+                s.listing = results.data[i];
+              }
+          }
+
+        });
+      };
+      return s;
+  }
 ]);

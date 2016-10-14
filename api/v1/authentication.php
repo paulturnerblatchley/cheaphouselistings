@@ -1,4 +1,4 @@
-<?php 
+<?php
 $app->get('/session', function() {
     $db = new DbHandler();
     $session = $db->getSession();
@@ -73,7 +73,7 @@ $app->post('/signUp', function() use ($app) {
             $response["status"] = "error";
             $response["message"] = "Failed to create customer. Please try again";
             echoResponse(201, $response);
-        }            
+        }
     }else{
         $response["status"] = "error";
         $response["message"] = "An user with the provided phone or email exists!";
@@ -92,18 +92,18 @@ $app->post('/listings', function() use ($app) {
     $response = array();
     $r = json_decode($app->request->getBody());
     $db = new DbHandler();
-    $address = $r->address;
-    $city = $r->city;
-    $price = $r->price;
-    $sqft = $r->sqft;
-    $lotsize = $r->lotsize;
-    $beds = $r->beds;
-    $baths = $r->baths;
+    $address = $r->listing->address;
+    $city = $r->listing->city;
+    $price = $r->listing->price;
+    $sqft = $r->listing->sqft;
+    $lotsize = $r->listing->lotsize;
+    $beds = $r->listing->beds;
+    $baths = $r->listing->baths;
     $isListingExists = $db->getOneRecord("select 1 from listings where address='$address'");
     if(!$isListingExists){
         $tabble_name = "listings";
         $column_names = array('address', 'city', 'price', 'sqft', 'lotsize', 'beds', 'baths');
-        $result = $db->insertIntoTable($r, $column_names, $tabble_name);
+        $result = $db->insertIntoTable($r->listing, $column_names, $tabble_name);
         if ($result != NULL) {
             $response["status"] = "success";
             $response["message"] = "New Listing created successfully";
@@ -120,4 +120,12 @@ $app->post('/listings', function() use ($app) {
         echoResponse(201, $response);
     }
 });
+
+$app->get('/listings', function() {
+  $db = new DbHandler();
+  $listings = $db->getListings();
+  echoResponse(200, $listings);
+});
+
+
 ?>

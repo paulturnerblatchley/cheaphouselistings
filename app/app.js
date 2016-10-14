@@ -33,12 +33,30 @@ app.config([
             .when('/listings', {
                 title: 'Listings',
                 templateUrl: 'partials/listings.html',
-                controller: 'ListingCtrl'
+                controller: 'ListingCtrl',
+                resolve: {
+                  getListings: ['listings', function(listings) {
+                    return listings.getListings('listings');
+                  }]
+                }
             })
             .when('/listings/new-listing', {
                 title: 'Create A New Listing',
                 templateUrl: 'partials/new-listing.html',
                 controller: 'ListingCtrl'
+            })
+            .when('/listings/:lid', {
+              title: 'Single Listing',
+              templateUrl: 'partials/single-listing.html',
+              controller: 'ListingCtrl',
+              resolve: {
+                getLid: function( $route ) {
+                  $r = $route.current.params.lid;
+                },
+                getSingleListing: ['singlelisting', function(singlelisting) {
+                  return singlelisting.get('listings', $r);
+                }]
+              }
             })
             .otherwise({
                 redirectTo: '/'
