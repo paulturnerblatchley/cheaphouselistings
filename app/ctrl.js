@@ -24,6 +24,20 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
             }
         });
     };
+    $scope.isLoggedIn = function() {
+        if ($rootScope.authenticated) {
+            return true;
+        } else {
+            return false;
+        }
+    };
+    $scope.isAdmin = function() {
+        if ($rootScope.isadmin == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    };
     $scope.logout = function () {
         auth.get('logout').then(function (results) {
             auth.toast(results);
@@ -36,7 +50,7 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
 app.controller('ListingCtrl', function($scope, $rootScope, $routeParams, $location, $http, auth, listings, singlelisting) {
     $scope.listings = listings.listings;
     $scope.newlisting = {};
-    $scope.newlisting = {address: '', city: '', price: '', sqft: '', lotsize: '', beds: '', baths: ''};
+    $scope.newlisting = {address: '', city: '', price: '', sqft: '', lotsize: '', beds: '', baths: '', listdesc: '', images: ''};
     $scope.newListing = function(listing) {
         auth.post('listings', {
             listing: listing
@@ -47,5 +61,7 @@ app.controller('ListingCtrl', function($scope, $rootScope, $routeParams, $locati
             }
         });
     };
+
     $scope.s = singlelisting.listing;
+
 });

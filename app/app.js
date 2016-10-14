@@ -27,7 +27,6 @@ app.config([
             .when('/', {
                 title: 'Home',
                 templateUrl: 'partials/home.html',
-                controller: 'MainCtrl',
                 role: '0'
             })
             .when('/listings', {
@@ -61,7 +60,8 @@ app.config([
             .otherwise({
                 redirectTo: '/'
             });
-}])
+    }
+])
 .run(function ($rootScope, $location, auth) {
     $rootScope.$on("$routeChangeStart", function (event, next, current) {
         $rootScope.authenticated = false;
@@ -71,13 +71,13 @@ app.config([
                 $rootScope.uid = results.uid;
                 $rootScope.name = results.name;
                 $rootScope.email = results.email;
+                $rootScope.isadmin = results.isadmin;
             } else {
-                var nextUrl = next.$$route.originalPath;
-                if (nextUrl == '/signup' || nextUrl == '/login') {
-
-                } else {
-                    $location.path("/login");
-                }
+                $rootScope.authenticated = false;
+                $rootScope.uid = '';
+                $rootScope.name = 'Guest';
+                $rootScope.email = '';
+                $rootScope.isadmin = 0;
             }
         });
     });

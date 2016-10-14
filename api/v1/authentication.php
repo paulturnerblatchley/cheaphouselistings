@@ -5,6 +5,7 @@ $app->get('/session', function() {
     $response["uid"] = $session['uid'];
     $response["email"] = $session['email'];
     $response["name"] = $session['name'];
+    $response["isadmin"] = $session['isadmin'];
     echoResponse(200, $session);
 });
 
@@ -16,7 +17,7 @@ $app->post('/login', function() use ($app) {
     $db = new DbHandler();
     $password = $r->customer->password;
     $email = $r->customer->email;
-    $user = $db->getOneRecord("select uid,name,password,email,created from customers_auth where phone='$email' or email='$email'");
+    $user = $db->getOneRecord("select uid,name,password,email,isadmin,created from customers_auth where phone='$email' or email='$email'");
     if ($user != NULL) {
         if(passwordHash::check_password($user['password'],$password)){
         $response['status'] = "success";
@@ -31,6 +32,7 @@ $app->post('/login', function() use ($app) {
         $_SESSION['uid'] = $user['uid'];
         $_SESSION['email'] = $email;
         $_SESSION['name'] = $user['name'];
+        $_SESSION['isadmin'] = $user['isadmin'];
         } else {
             $response['status'] = "error";
             $response['message'] = 'Login failed. Incorrect credentials';
@@ -51,6 +53,7 @@ $app->post('/signUp', function() use ($app) {
     $name = $r->customer->name;
     $email = $r->customer->email;
     $password = $r->customer->password;
+    $isadmin = 0;
     $isUserExists = $db->getOneRecord("select 1 from customers_auth where phone='$phone' or email='$email'");
     if(!$isUserExists){
         $r->customer->password = passwordHash::hash($password);
@@ -68,6 +71,7 @@ $app->post('/signUp', function() use ($app) {
             $_SESSION['phone'] = $phone;
             $_SESSION['name'] = $name;
             $_SESSION['email'] = $email;
+            $_SESSION['isadmin'] = $isadmin;
             echoResponse(200, $response);
         } else {
             $response["status"] = "error";
@@ -99,10 +103,12 @@ $app->post('/listings', function() use ($app) {
     $lotsize = $r->listing->lotsize;
     $beds = $r->listing->beds;
     $baths = $r->listing->baths;
+    $listdesc = $r->listing->listdesc;
+    $images = $r->listing->images;
     $isListingExists = $db->getOneRecord("select 1 from listings where address='$address'");
     if(!$isListingExists){
         $tabble_name = "listings";
-        $column_names = array('address', 'city', 'price', 'sqft', 'lotsize', 'beds', 'baths');
+        $column_names = array('address', 'city', 'price', 'sqft', 'lotsize', 'beds', 'baths', 'listdesc', 'images');
         $result = $db->insertIntoTable($r->listing, $column_names, $tabble_name);
         if ($result != NULL) {
             $response["status"] = "success";

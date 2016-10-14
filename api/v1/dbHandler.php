@@ -55,12 +55,14 @@ public function getSession(){
         $sess["uid"] = $_SESSION['uid'];
         $sess["name"] = $_SESSION['name'];
         $sess["email"] = $_SESSION['email'];
+        $sess["isadmin"] = $_SESSION['isadmin'];
     }
     else
     {
         $sess["uid"] = '';
         $sess["name"] = 'Guest';
         $sess["email"] = '';
+        $sess["isadmin"] = NULL;
     }
     return $sess;
 }
@@ -80,6 +82,7 @@ public function destroySession(){
         unset($_SESSION['uid']);
         unset($_SESSION['name']);
         unset($_SESSION['email']);
+        unset($_SESSION['isadmin']);
         $info='info';
         if(isSet($_COOKIE[$info]))
         {

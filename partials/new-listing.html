@@ -9,7 +9,7 @@
 </div>
 <div class="page-content">
     <div class="row">
-        <div class="col-sm-6 col-sm-offset-1">
+        <div class="col-sm-7 col-sm-offset-1">
             <div id="login-box" class="login-box visible widget-box no-border">
                 <div class="widget-body">
                     <div class="widget-main">
@@ -17,67 +17,83 @@
                             Create a New Listing
                         </h4>
                         <br/>
-                        <form name="newListingForm" class="form-horizontal" role="form" ng-submit="newListing(newlisting)">
+                        <form name="newListingForm" class="form-horizontal" role="form" ng-submit="newListing(newlisting)" enctype="multipart/form-data">
                             <div class="form-group">
-                                <label class="col-sm-5 control-label no-padding-right" for="address">Address</label>
-                                <div class="col-sm-7">
+                                <label class="col-sm-4 control-label no-padding-right" for="address">Address</label>
+                                <div class="col-sm-8">
                                     <span class="block input-icon input-icon-right">
                                         <input type="text" class="form-control" placeholder="Address" name="address" ng-model="newlisting.address" focus required/>
                                     </span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-5 control-label no-padding-right" for="city">City</label>
-                                <div class="col-sm-7">
+                                <label class="col-sm-4 control-label no-padding-right" for="city">City</label>
+                                <div class="col-sm-8">
                                     <span class="block input-icon input-icon-right">
-                                <input type="text" class="form-control" name="city" placeholder="city" ng-model="newlisting.city" required/>
+                                <input type="text" class="form-control" name="city" placeholder="City" ng-model="newlisting.city" required/>
                             </span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-5 control-label no-padding-right" for="price">Price</label>
-                                <div class="col-sm-7">
+                                <label class="col-sm-4 control-label no-padding-right" for="price">Price</label>
+                                <div class="col-sm-8">
                                     <span class="block input-icon input-icon-right">
                                 <input type="text" class="form-control" name="price" placeholder="Price" ng-model="newlisting.price" required/>
                             		</span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-5 control-label no-padding-right" for="sqft">Square Footage</label>
-                                <div class="col-sm-7">
+                                <label class="col-sm-4 control-label no-padding-right" for="sqft">Square Footage</label>
+                                <div class="col-sm-8">
                                     <span class="block input-icon input-icon-right">
                                 <input type="text" class="form-control" name="sqft" placeholder="Sq Ft" ng-model="newlisting.sqft" required/>
                             </span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-5 control-label no-padding-right" for="lotsize">Lot Size</label>
-                                <div class="col-sm-7">
+                                <label class="col-sm-4 control-label no-padding-right" for="lotsize">Lot Size</label>
+                                <div class="col-sm-8">
                                     <span class="block input-icon input-icon-right">
                                 <input type="text" class="form-control" placeholder="Lot Size" name="lotsize" ng-model="newlisting.lotsize" required/>
                             </span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-5 control-label no-padding-right" for="beds">Bedrooms</label>
-                                <div class="col-sm-7">
+                                <label class="col-sm-4 control-label no-padding-right" for="beds">Bedrooms</label>
+                                <div class="col-sm-8">
                                     <span class="block input-icon input-icon-right">
                                 <input type="text" class="form-control" placeholder="Beds" name="beds" ng-model="newlisting.beds" required/>
                             </span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-5 control-label no-padding-right" for="baths">Bathrooms</label>
-                                <div class="col-sm-7">
+                                <label class="col-sm-4 control-label no-padding-right" for="baths">Bathrooms</label>
+                                <div class="col-sm-8">
                                     <span class="block input-icon input-icon-right">
                                 <input type="text" class="form-control" placeholder="Baths" name="baths" ng-model="newlisting.baths" required/>
                             </span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <span class="lbl col-sm-5"> </span>
-                                <div class="col-sm-7">
-                                    <button type="submit" class="width-35 pull-right btn btn-sm btn-primary"  data-ng-disabled="newListingForm.$invalid">
+                                <label class="col-sm-4 control-label no-padding-right" for="listdesc">Description</label>
+                                <div class="col-sm-8">
+                                    <span class="block input-icon input-icon-right">
+                                <textarea rows="4" cols="50" class="form-control" name="listdesc" ng-model="newlisting.listdesc"></textarea>
+                            </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label no-padding-right" for="images">Images</label>
+                                <div class="col-sm-8">
+                                    <span class="block input-icon input-icon-right">
+                                     <input type="file" >
+                            </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <span class="lbl col-sm-4"> </span>
+                                <div class="col-sm-8">
+                                    <button type="submit" class="width-35 pull-left col-sm-5 btn btn-lg btn-primary"  data-ng-disabled="newListingForm.$invalid">
                                         Create
                                     </button>
                                 </div>
