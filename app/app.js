@@ -42,7 +42,18 @@ app.config([
             .when('/listings/new-listing', {
                 title: 'Create A New Listing',
                 templateUrl: 'partials/new-listing.html',
-                controller: 'ListingCtrl'
+                controller: 'ListingCtrl',
+                resolve: {
+                    checkAdmin: function(auth, $location) {
+                        auth.get('session').then(function (results) {
+                        if(results.isadmin == 1) {
+                            $location.path('/listings/new-listing');
+                        } else {
+                            $location.path('/listings');
+                        }
+                        })
+                    }
+                }
             })
             .when('/listings/:lid', {
               title: 'Single Listing',
