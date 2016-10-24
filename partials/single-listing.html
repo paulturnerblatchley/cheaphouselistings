@@ -12,6 +12,9 @@
 		<div class="page-header">
 			<h1>{{s.address}}</h1>
 		</div>
+		<div class="image-repeat-box" ng-repeat="image in s.images">
+			<img class="img-responsive" ng-hide="!image" ng-src="../api/v1/uploads/{{image}}" />
+		</div>
 		<div>
 			<h4>{{s.city}}</h4>
 			<h5>Offered at {{s.price}}</h5>

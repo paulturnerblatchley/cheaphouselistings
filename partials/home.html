@@ -2,17 +2,26 @@
 	<div id="bg" class="bg"></div>
 	<div class="jumbotron">
 		<div class="container-fluid">
-			<h1>This is a test</h1>
-			<p>Let's see how this works</p>
+			<div class="row">
+				<h1 class="col-sm-12"">CHEAP HOUSE LISTINGS</h1>
+			</div>
+			<div class="row">
+				<p class="col-sm-8">Search through a selection of investment properties to find the one that's right for you.</p>
+			</div>
+			<div class="row col-sm-4">
+				<button class="btn btn-primary btn-lg">FIND A HOME</button>
+			</div>
 		</div>
 	</div>
 	<main class="home-content">
 		<div class="container-fluid">
-			<h2>Find a house near you</h2>
+			<div class="row">
+				<h2 class="col-sm-5">Find a house near you</h2>
+			</div>
 			<div class="search-form-box">
-				<form name="home-search" class="container-fluid" role="form">
+				<form ng-submit="setCity(city)" ng-controller="ListingCtrl" name="home-search" class="container-fluid" role="form">
 					<div class="form-group city-search col-sm-3">
-						<input class="form-control" type="text" placeholder="City" >
+						<input class="form-control" type="text" placeholder="City" ng-model="city">
 					</div>
 					<div class="form-group price-search col-sm-3">
 						<select class="form-control" name="cost">
@@ -47,15 +56,15 @@
 				</form>
 			</div>
 			<div class="row col-sm-12">
-				<div class="col-sm-4 text-center">
+				<div class="col-sm-4 text-center lead">
 					<i class="glyphicon glyphicon-home"></i>
 					<p>Find the a large selection of house with great potential in your neightborhood.</p>
 				</div>
-				<div class="col-sm-4 text-center">
+				<div class="col-sm-4 text-center lead">
 					<i class="glyphicon glyphicon-home"></i>
 					<p>Find the a large selection of house with great potential in your neightborhood.</p>
 				</div>
-				<div class="col-sm-4 text-center">
+				<div class="col-sm-4 text-center lead">
 					<i class="glyphicon glyphicon-home"></i>
 					<p>Find the a large selection of house with great potential in your neightborhood.</p>
 				</div>

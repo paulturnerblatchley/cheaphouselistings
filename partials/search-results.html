@@ -1,0 +1,44 @@
+<div ng-controller="ListingCtrl">
+	<div class="breadcrumbs" id="breadcrumbs">
+	    <ul class="breadcrumb">
+	        <li>
+	            <a href="#">Home</a>
+	        </li>
+	        <li>
+	        	<a href="#/listings">Listings</a></li>
+	        <li class="active">Search Results</li>
+	    </ul>
+	</div>
+	<div class="page-content">
+		<div class="container">
+			<div class="page-header">
+				<h1>Results</h1>
+			</div>
+			<div ng-show="noResults()">
+				<p>There were no results within your search criteria.</p>
+			</div>
+			<div ng-hide="noResults()">
+				<div class="clearfix listing-display-box" ng-repeat="listing in searchRes">
+					<div class="clearfix">
+						<h2>{{listing.address}}</h2>
+						<div class="image-box">
+							<img class="img-responsive" ng-src="../api/v1/uploads/{{listing.images[0]}}" />
+						</div>
+						
+						<h4>{{listing.city}}</h4>
+						<h5>Offered at {{listing.price}}</h5>
+						<ul>
+							<li>Beds: {{listing.beds}}</li>
+							<li>Baths: {{listing.baths}}</li>
+							<li>Square Footage: {{listing.sqft}}</li>
+							<li>Lot Size: {{listing.lotsize}}</li>
+						</ul>
+						<p class="col-sm-6">{{listing.listdesc}}</p>
+					</div>
+					<hr>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</div>

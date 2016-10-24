@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ['ngRoute', 'ngAnimate', 'toaster']);
+var app = angular.module('chl', ['ngRoute', 'ngAnimate', 'ngResource', 'ngStorage', 'toaster']);
 
 app.config([
     '$routeProvider',
@@ -55,6 +55,21 @@ app.config([
                     }
                 }
             })
+            .when('/listings/search-results', {
+              title: 'Search Results',
+              templateUrl: 'partials/search-results.html',
+              controller: 'ListingCtrl',
+              resolve: {
+                getCity: function( $localStorage ) {
+                  $c = $localStorage.city;
+                },
+                getResults: ['searchListings', function(searchListings) {
+                    return searchListings.get('listings', $c).then(function(res){
+                        return res;
+                    });
+                }]
+              }
+            })
             .when('/listings/:lid', {
               title: 'Single Listing',
               templateUrl: 'partials/single-listing.html',
@@ -75,7 +90,6 @@ app.config([
 ])
 .run(function ($rootScope, $location, auth) {
     $rootScope.$on("$routeChangeStart", function (event, next, current) {
-        $rootScope.authenticated = false;
         auth.get('session').then(function (results) {
             if (results.uid) {
                 $rootScope.authenticated = true;

@@ -133,5 +133,22 @@ $app->get('/listings', function() {
   echoResponse(200, $listings);
 });
 
+$app->post('/uploader',function() use ($app) {
 
+    $imageinfo = getimagesize($_FILES['img']['tmp_name']);
+    if($imageinfo['mime'] != 'image/gif' && $imageinfo['mime'] != 'image/jpeg' && $imageinfo['mime'] != 'image/png') {
+        $imgMsg = "Sorry, we only accept JPEG, PNG, or GIF images";
+        echoResponse(201, $imgMsg);
+        exit;
+    }
+    $uploaddir = 'uploads/'; 
+    $uploadfile = $uploaddir . basename($_FILES['img']['name']);
+    if (move_uploaded_file($_FILES['img']['tmp_name'], $uploadfile)) {
+        echo "File is valid, and was successfully uploaded";
+    } else {
+        echo "File uploading failed";
+    }
+
+    
+});
 ?>

@@ -29,3 +29,35 @@ app.directive('passwordMatch', [function () {
         }
     };
 }]);
+
+app.directive('fileModel', ['$parse', function ($parse) {
+    return {
+       restrict: 'A',
+       link: function(scope, element, attrs) {
+          var model = $parse(attrs.fileModel);
+          var isMultiple = attrs.multiple;
+          var modelSetter = model.assign;
+          element.bind('change', function(){
+            var img = [];
+            angular.forEach(element[0].files, function (item) {
+                var value = {
+                    lastModified: item.lastModified,
+                    lastModifiedDate: item.lastModifiedDate,
+                    name: item.name,
+                    size: item.size,
+                    type: item.type,
+                    img: item
+                };
+                img.push(value);
+            });
+             scope.$apply(function(){
+                if (isMultiple) {
+                    modelSetter(scope, img);
+                } else {
+                    modelSetter(scope, img[0]);
+                } 
+             });
+          });
+       }
+    };
+ }]);

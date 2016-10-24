@@ -33,7 +33,7 @@ class DbHandler {
                 $$desired_key = $c[$desired_key];
             }
             $columns = $columns.$desired_key.',';
-            $values = $values."'".$$desired_key."',";
+            $values = $values.'"'.$$desired_key.'",';
         }
         $query = "INSERT INTO ".$table_name."(".trim($columns,',').") VALUES(".trim($values,',').")";
         $r = $this->conn->query($query) or die($this->conn->error.__LINE__);
