@@ -60,11 +60,14 @@ app.config([
               templateUrl: 'partials/search-results.html',
               controller: 'ListingCtrl',
               resolve: {
-                getCity: function( $localStorage ) {
-                  $c = $localStorage.city;
+                getParams: function( $localStorage ) {
+                  $city = $localStorage.city;
+                  $price = $localStorage.price;
+                  $beds = $localStorage.beds;
+                  $baths = $localStorage.baths;
                 },
                 getResults: ['searchListings', function(searchListings) {
-                    return searchListings.get('listings', $c).then(function(res){
+                    return searchListings.get('listings', $city, $price, $beds, $baths).then(function(res){
                         return res;
                     });
                 }]

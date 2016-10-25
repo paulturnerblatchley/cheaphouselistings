@@ -86,20 +86,59 @@ app.factory("searchListings", ['$http',
         listings: []
       };
 
-      o.get = function(q, city) {
+      o.get = function(q, city, price, beds, baths) {
         return $http.get(serviceBase + q).then(function(results) {
-          var count = 0;
-          var noResults = [];
+          var count = 0,
+              noResults = [],
+              priceMin,
+              priceMax;
           o.listings = [];
-          for(i=0;i<results.data.length;i++){
-              if (results.data[i].city == city) {
-                o.listings.push(results.data[i]);
-                o.listings[i-count].images = results.data[i].images.split(', ');
-              } else if (count == results.data.length) {
-                return noResults;
-              } else {
-                count++;
-              }
+          switch (price) {
+            case '0':
+              priceMin = 0;
+              priceMax = 100000;
+              break;
+            case '1':
+              priceMin = 100000;
+              priceMax = 300000;
+              break;
+            case '3':
+              priceMin = 300000;
+              priceMax = 500000;
+              break;
+            case '5':
+              priceMin = 500000;
+              priceMax = 1000000;
+              break;
+            case '10':
+              priceMin = 1000000;
+              priceMax = 1000000000;
+              break;
+          }
+          console.log(city, price, beds, baths);
+          if (city != "" && typeof price === "undefined" && typeof beds === "undefined" && typeof baths === "undefined"){
+
+            for(i=0;i<results.data.length;i++){
+                if (results.data[i].city == city) {
+                  o.listings.push(results.data[i]);
+                  o.listings[i-count].images = results.data[i].images.split(', ');
+                } else if (count == results.data.length) {
+                  return noResults;
+                } else {
+                  count++;
+                }
+            }
+          } else {
+            for(i=0;i<results.data.length;i++){
+                if (results.data[i].city == city && results.data[i].beds == beds && results.data[i].baths == baths && priceMin <= results.data[i].price <= priceMax) {
+                  o.listings.push(results.data[i]);
+                  o.listings[i-count].images = results.data[i].images.split(', ');
+                } else if (count == results.data.length) {
+                  return noResults;
+                } else {
+                  count++;
+                }
+            }
           }
           return o.listings;
         });

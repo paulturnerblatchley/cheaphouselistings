@@ -60,7 +60,13 @@ app.controller('ListingCtrl', function($scope, $rootScope, $route, $location, $h
                 listing.images += ", " + f[i].name;
             }
         }
-
+        listing.address = listing.address;
+        listing.city = listing.city.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+        listing.price = listing.price.replace(/\$|,/g, '');
+        listing.beds = parseInt(listing.beds);
+        listing.baths = parseInt(listing.baths);
+        listing.sqft = parseInt(listing.sqft.replace(/,/, ''));
+        listing.lotsize = parseInt(listing.lotsize.replace(/,/, ''));
         auth.post('listings', {
             listing: listing
         }).then(function (results) {
@@ -85,23 +91,32 @@ app.controller('ListingCtrl', function($scope, $rootScope, $route, $location, $h
     $scope.s = singlelisting.listing;
     $scope.searchRes = searchListings.listings;
     $scope.$storage = $localStorage;
-    $scope.setCity = function(city) {
+    $scope.setParams = function(city,price,beds,baths) {
         $localStorage.$reset();
         var citySearch = city.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
         $scope.$storage.city = citySearch;
+        $scope.$storage.price = price;
+        $scope.$storage.beds = beds;
+        $scope.$storage.baths = baths;
         if ($location.url() != '/listings/search-results') {
             $location.path('listings/search-results');
         } else {  
             $route.reload();                
         }
     };
+    
 
     $scope.noResults = function() {
         if($scope.searchRes[0] == null) {
             return true;
         } 
     };
-    
+
+
+    // allows users to save listings to their dashboard
+    $scope.saveListing = function(listing) {
+        console.log(listing);
+    };
 
     
 });

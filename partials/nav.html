@@ -8,7 +8,7 @@
     </button>
     <a class="navbar-brand navbar-collapse collapse" aria-expanded="false" rel="home" title="Home" href="/">Cheap House Listings</a>
     <div class="search-bar pull-left">
-      <form ng-submit="setCity(city)" ng-controller="ListingCtrl">
+      <form ng-submit="setParams(city)" ng-controller="ListingCtrl">
         <input type="text" ng-model="city" placeholder="Search by City..." />
         <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
       </form>

@@ -9,21 +9,19 @@
 </div>
 <div class="page-content">
     <div class="row">
-        <div class="space-6"></div>
-        <div class="col-sm-10 col-sm-offset-1">
+        <div class="col-sm-7 col-sm-offset-1" ng-controller="ListingCtrl">
+            <h3>Saved Listings</h3>
+            
+        </div>
+        <div class="col-sm-4">
             <div id="login-box" class="login-box visible widget-box no-border">
                 <div class="widget-body">
                     <div class="widget-main">
-                        <h4 class="header blue lighter bigger">
-                    <i class="icon-coffee green"></i>
-                    User Authenticated
-                </h4>
-                        <div class="space-16"></div>
-                        UID: {{uid}}
-                        <br/>NAME: {{name}}
-                        <br/>E-MAIL: {{email}}
-                        <br/>
-                        <a ng-click="logout();">Logout</a>
+                    <h4>{{name}}</h4> 
+                    <ul>
+                        <li>Email: {{email}}</li>
+                    </ul>
+                    <p><a ng-click="logout();">Logout</a></p>
                     </div>
                 </div>
             </div>
