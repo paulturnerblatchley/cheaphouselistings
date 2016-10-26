@@ -41,6 +41,7 @@ Thumbs.db
 
 # Images #
 ##########
+api/v1/uploads/
 *.jpg
 *.png
 *.gif
