@@ -11,6 +11,10 @@ body{
 	text-align: left;
 }
 
+.viewport{
+	min-height: 300px;
+}
+
 h1,h2,h3,h4,h5,h6 {
 	font-family: "Open Sans", Helvetica, sans-serif;
 }
@@ -145,7 +149,7 @@ ul.simple-post-list {
  * HOMEPAGE
  ****/
  .home-container {
- 	background-color: #837346;
+ 	background-color: #bdbec0;
  	position: relative;
  	z-index: 3;
  }
@@ -194,6 +198,17 @@ ul.simple-post-list {
  }
 
  /*
+  * DASHBOARD
+  ****/
+	.saved-listings .row {
+		margin: 25px 0;
+	}
+	.saved-listings .img-thumbnail {
+		width: 300px;
+		height: auto;
+	}
+
+ /*
  * PAGE
  ****/
 .page-content {
@@ -226,9 +241,20 @@ ul.simple-post-list {
  	bottom: 0;
  	z-index: 4;
  	width: 100%;
- 	height: 300px;
  	background-color: #333;
  	color: #fff;
+ }
+
+ .footer-top {
+	 padding-top: 50px;
+	 height: 250px;
+ }
+
+ .footer-sep {
+ }
+
+ .footer-bottom {
+	 height: 50px;
  }
 
 /*
@@ -261,8 +287,8 @@ ul.simple-post-list {
 	.mobile-brand {
 		display: block!important;
 	}
-	
-	
+
+
 }
 
 @media (max-width: 600px) {

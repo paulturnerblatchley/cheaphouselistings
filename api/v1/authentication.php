@@ -147,23 +147,21 @@ $app->post('/uploader',function() use ($app) {
         echoResponse(201, $imgMsg);
         exit;
     }
-    $uploaddir = 'uploads/'; 
+    $uploaddir = 'uploads/';
     $uploadfile = $uploaddir . basename($_FILES['img']['name']);
     if (move_uploaded_file($_FILES['img']['tmp_name'], $uploadfile)) {
         echo "File is valid, and was successfully uploaded";
     } else {
         echo "File uploading failed";
-    }  
+    }
 });
 
 $app->post('/saveListing', function() use ($app) {
     $db = new DbHandler();
     $session = $db->getSession();
     $r = json_decode($app->request->getBody());
-    $listing = array();
-    array_push($listing,  $r->listing->lid);
-    $listing = json_encode($listing);
-    $isListingExists = $db->getOneRecord("select 1 from customers_auth where savedListings='$listing'");
+    $listing = $r->listing->lid;
+    $isListingExists = $db->getOneRecord("select 1 from customers_auth where savedListings LIKE '%$listing%'");
     if(!$isListingExists){
        $result = $db->addToRow("customers_auth", "savedListings", $listing, "uid", $session['uid']);
         if ($result != NULL) {
@@ -180,6 +178,6 @@ $app->post('/saveListing', function() use ($app) {
         $response["message"] = "That listing is already saved to your Dashboard.";
         echoResponse(201, $response);
     }
-    
+
 });
 ?>

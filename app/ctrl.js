@@ -65,8 +65,6 @@ app.controller('ListingCtrl', function($scope, $rootScope, $route, $location, $h
         listing.price = listing.price.replace(/\$|,/g, '');
         listing.beds = parseInt(listing.beds);
         listing.baths = parseInt(listing.baths);
-        listing.sqft = parseInt(listing.sqft.replace(',', ''));
-        listing.lotsize = parseInt(listing.lotsize.replace(',', ''));
         auth.post('listings', {
             listing: listing
         }).then(function (results) {
@@ -89,6 +87,17 @@ app.controller('ListingCtrl', function($scope, $rootScope, $route, $location, $h
     $scope.s = singlelisting.listing;
 
     $scope.searchRes = searchListings.listings;
+    $scope.saved = savedListings.listings;
+
+    $scope.hasSavedListings = function() {
+      console.log($scope.saved);
+      if ($scope.saved[0] != null) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
     $scope.$storage = $localStorage;
     $scope.setParams = function(city,price,beds,baths) {
         delete $scope.$storage.city;
@@ -102,16 +111,16 @@ app.controller('ListingCtrl', function($scope, $rootScope, $route, $location, $h
         $scope.$storage.baths = baths;
         if ($location.url() != '/listings/search-results') {
             $location.path('listings/search-results');
-        } else {  
-            $route.reload();                
+        } else {
+            $route.reload();
         }
     };
-    
+
 
     $scope.noResults = function() {
         if($scope.searchRes[0] == null) {
             return true;
-        } 
+        }
     };
 
 
@@ -124,5 +133,4 @@ app.controller('ListingCtrl', function($scope, $rootScope, $route, $location, $h
         });
     };
 
-    $scope.saved = savedListings.listings;
 });

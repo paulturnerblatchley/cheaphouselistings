@@ -42,14 +42,13 @@ app.factory("listings", ['$http', 'auth', 'toaster',
 
         o.getListings = function(q) {
           return $http.get(serviceBase + q).then(function(results) {
-            
+
             o.listings = results.data;
 
             for(i=0; i<results.data.length;i++) {
               o.listings[i].images = results.data[i].images.split(', ');
+              o.listings[i].price = o.listings[i].price.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
             }
-            
-            
             return results.data;
           });
         };
@@ -71,6 +70,9 @@ app.factory("singlelisting", ['$http',
                 o.listing = results.data[i];
 
                 o.listing.images = results.data[i].images.split(', ');
+
+                o.listing.price = o.listing.price.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
               }
           }
 
@@ -87,9 +89,12 @@ app.factory("savedListings", ['$http',
     };
 
     o.get = function(q, lid) {
+      o.listings.splice(0, o.listings.length);
       return $http.get(serviceBase + q).then(function(results) {
+
         for(i=0;i<results.data.length;i++){
             if (results.data[i].lid == lid) {
+              results.data[i].price = results.data[i].price.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
               o.listings.push(results.data[i]);
             }
         }
@@ -166,7 +171,7 @@ app.factory("searchListings", ['$http',
   }
 ]);
 
-app.factory("Data",['$resource','$localStorage', '$sessionStorage', 
+app.factory("Data",['$resource','$localStorage', '$sessionStorage',
   function($resource,$localStorage,$sessionStorage) {
       return function(link) {
           return $resource(serviceBase+link,{},{

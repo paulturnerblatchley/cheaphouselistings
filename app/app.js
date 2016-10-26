@@ -26,11 +26,11 @@ app.config([
                 resolve: {
                     getSavedListings: ['auth', 'savedListings', function(auth, savedListings) {
                         return auth.get('session').then(function(results) {
-                            var lid = results.savedListings.split(" ");
-                            console.log(lid);
-                            return savedListings.get('listings', lid).then(function(res) {
-                                return res;
-                            });
+                          console.log(results);
+                            var lid = results.savedListings.split(",");
+                            for (i = 1; i < lid.length; i++) {
+                              savedListings.get('listings', lid[i]);
+                            }
                         });
                     }]
                 }

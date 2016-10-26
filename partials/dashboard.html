@@ -9,15 +9,27 @@
 </div>
 <div class="page-content">
     <div class="row">
-        <div class="col-sm-7 col-sm-offset-1" ng-controller="ListingCtrl">
+        <div class=" saved-listings col-sm-7 col-sm-offset-1" ng-controller="ListingCtrl">
             <h3 class="page-header">Saved Listings</h3>
-            <p>{{saved.address}}</p>
+            <div ng-hide="hasSavedListings()">
+              <h5>You have no saved listings. <a href="/#/listings">View all listings.</a></h5>
+            </div>
+            <div class="row" ng-repeat="listing in saved">
+              <div class="col-sm-3">
+                <img class="img-thumbnail" ng-src="../api/v1/uploads/{{listing.images}}">
+              </div>
+              <div class="col-sm-6">
+                <h4><a ng-href="/#/listings/{{listing.lid}}">{{listing.address}}</a></h4>
+                <p>${{listing.price}}</p>
+                <p>Beds: {{listing.beds}}  |  Baths: {{listing.baths}}</p>
+              </div>
+            </div>
         </div>
         <div class="col-sm-4">
             <div id="login-box" class="login-box visible widget-box no-border">
                 <div class="widget-body">
                     <div class="widget-main">
-                    <h4>{{name}}</h4> 
+                    <h4>{{name}}</h4>
                     <ul>
                         <li>Email: {{email}}</li>
                     </ul>
