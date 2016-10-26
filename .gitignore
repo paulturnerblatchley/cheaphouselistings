@@ -38,3 +38,9 @@ passwordHash.php
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Images #
+##########
+*.jpg
+*.png
+*.gif
