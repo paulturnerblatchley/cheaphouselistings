@@ -22,7 +22,19 @@ app.config([
             .when('/dashboard', {
                 title: 'Dashboard',
                 templateUrl: 'partials/dashboard.html',
-                controller: 'authCtrl'
+                controller: 'ListingCtrl',
+                resolve: {
+                    getSavedListings: ['auth', 'savedListings', function(auth, savedListings) {
+                        return auth.get('session').then(function(results) {
+                            var lid = results.savedListings.split(" ");
+                            console.log(lid);
+                            return savedListings.get('listings', lid).then(function(res) {
+                                return res;
+                            });
+                        });
+                    }]
+                }
+
             })
             .when('/', {
                 title: 'Home',
@@ -100,12 +112,14 @@ app.config([
                 $rootScope.name = results.name;
                 $rootScope.email = results.email;
                 $rootScope.isadmin = results.isadmin;
+                $rootScope.savedListings = results.savedListings;
             } else {
                 $rootScope.authenticated = false;
                 $rootScope.uid = '';
                 $rootScope.name = 'Guest';
                 $rootScope.email = '';
                 $rootScope.isadmin = 0;
+                $rootScope.savedListings = '';
             }
         });
     });

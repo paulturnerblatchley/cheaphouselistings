@@ -80,6 +80,26 @@ app.factory("singlelisting", ['$http',
   }
 ]);
 
+app.factory("savedListings", ['$http',
+  function($http) {
+    var o = {
+      listings: []
+    };
+
+    o.get = function(q, lid) {
+      return $http.get(serviceBase + q).then(function(results) {
+        for(i=0;i<results.data.length;i++){
+            if (results.data[i].lid == lid) {
+              o.listings.push(results.data[i]);
+            }
+        }
+        return o.listings;
+      });
+    };
+    return o;
+  }
+]);
+
 app.factory("searchListings", ['$http',
   function($http) {
       var o = {
@@ -115,7 +135,6 @@ app.factory("searchListings", ['$http',
               priceMax = 1000000000;
               break;
           }
-          console.log(city, price, beds, baths);
           if (city != "" && typeof price === "undefined" && typeof beds === "undefined" && typeof baths === "undefined"){
 
             for(i=0;i<results.data.length;i++){

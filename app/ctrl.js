@@ -43,11 +43,11 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
             auth.toast(results);
             $location.path('login');
         });
-    }
+    };
 });
 
 // listing controller
-app.controller('ListingCtrl', function($scope, $rootScope, $route, $location, $http, $localStorage, $sessionStorage, auth, listings, singlelisting, searchListings, Data) {
+app.controller('ListingCtrl', function($scope, $rootScope, $route, $location, $http, $localStorage, $sessionStorage, auth, listings, singlelisting, searchListings, savedListings, Data) {
     $scope.listings = listings.listings;
     $scope.newlisting = {};
     $scope.newlisting = {address: '', city: '', price: '', sqft: '', lotsize: '', beds: '', baths: '', listdesc: '', images: ''};
@@ -65,8 +65,8 @@ app.controller('ListingCtrl', function($scope, $rootScope, $route, $location, $h
         listing.price = listing.price.replace(/\$|,/g, '');
         listing.beds = parseInt(listing.beds);
         listing.baths = parseInt(listing.baths);
-        listing.sqft = parseInt(listing.sqft.replace(/,/, ''));
-        listing.lotsize = parseInt(listing.lotsize.replace(/,/, ''));
+        listing.sqft = parseInt(listing.sqft.replace(',', ''));
+        listing.lotsize = parseInt(listing.lotsize.replace(',', ''));
         auth.post('listings', {
             listing: listing
         }).then(function (results) {
@@ -81,18 +81,20 @@ app.controller('ListingCtrl', function($scope, $rootScope, $route, $location, $h
         var files = [];
         for (i=0;i<$scope.myFile.length;i++) {
             files.push($scope.myFile[i]);
-
-        Data('uploader').postImage(files[i], function(response) {
-            
-        });
+            Data('uploader').postImage(files[i], function(response) {
+            });
         }
     };
 
     $scope.s = singlelisting.listing;
+
     $scope.searchRes = searchListings.listings;
     $scope.$storage = $localStorage;
     $scope.setParams = function(city,price,beds,baths) {
-        $localStorage.$reset();
+        delete $scope.$storage.city;
+        delete $scope.$storage.price;
+        delete $scope.$storage.beds;
+        delete $scope.$storage.baths;
         var citySearch = city.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
         $scope.$storage.city = citySearch;
         $scope.$storage.price = price;
@@ -115,8 +117,12 @@ app.controller('ListingCtrl', function($scope, $rootScope, $route, $location, $h
 
     // allows users to save listings to their dashboard
     $scope.saveListing = function(listing) {
-        console.log(listing);
+        auth.post('saveListing', {
+            listing: listing
+        }).then(function(results){
+            auth.toast(results);
+        });
     };
 
-    
+    $scope.saved = savedListings.listings;
 });

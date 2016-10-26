@@ -45,57 +45,69 @@ class DbHandler {
             return NULL;
         }
     }
-public function getSession(){
-    if (!isset($_SESSION)) {
-        session_start();
-    }
-    $sess = array();
-    if(isset($_SESSION['uid']))
-    {
-        $sess["uid"] = $_SESSION['uid'];
-        $sess["name"] = $_SESSION['name'];
-        $sess["email"] = $_SESSION['email'];
-        $sess["isadmin"] = $_SESSION['isadmin'];
-    }
-    else
-    {
-        $sess["uid"] = '';
-        $sess["name"] = 'Guest';
-        $sess["email"] = '';
-        $sess["isadmin"] = NULL;
-    }
-    return $sess;
-}
-
-public function getListings(){
-  $r = $this->conn->query("SELECT * FROM `listings`");
-  return $result = $r->fetch_all(MYSQLI_ASSOC);
-}
-
-
-public function destroySession(){
-    if (!isset($_SESSION)) {
-    session_start();
-    }
-    if(isSet($_SESSION['uid']))
-    {
-        unset($_SESSION['uid']);
-        unset($_SESSION['name']);
-        unset($_SESSION['email']);
-        unset($_SESSION['isadmin']);
-        $info='info';
-        if(isSet($_COOKIE[$info]))
-        {
-            setcookie ($info, '', time() - $cookie_time);
+    public function getSession(){
+        if (!isset($_SESSION)) {
+            session_start();
         }
-        $msg="Logged Out Successfully...";
+        $sess = array();
+        if(isset($_SESSION['uid']))
+        {
+            $sess["uid"] = $_SESSION['uid'];
+            $sess["name"] = $_SESSION['name'];
+            $sess["email"] = $_SESSION['email'];
+            $sess["isadmin"] = $_SESSION['isadmin'];
+            $sess["savedListings"] = $_SESSION['savedListings'];
+        }
+        else
+        {
+            $sess["uid"] = '';
+            $sess["name"] = 'Guest';
+            $sess["email"] = '';
+            $sess["isadmin"] = NULL;
+            $sess["savedListings"] = NULL;
+        }
+        return $sess;
     }
-    else
-    {
-        $msg = "Not logged in...";
+
+    public function getListings(){
+      $r = $this->conn->query("SELECT * FROM `listings`");
+      return $result = $r->fetch_all(MYSQLI_ASSOC);
     }
-    return $msg;
-}
+
+    public function updateRow($table_name,$column_name,$column_value,$id,$id_value) {
+        $query = "UPDATE " . $table_name . " SET " . $column_name . "='" . $column_value . "' WHERE " . $id . "=" . $id_value;
+        return $this->conn->query($query) or die($this->conn->error.__LINE__);
+    }
+
+    public function addToRow($table_name,$column_name,$column_value,$id,$id_value) {
+        $query = "UPDATE " . $table_name . " SET " . $column_name . "= CONCAT(" . $column_name . ", '" . $column_value . "') WHERE " . $id . "=" . $id_value;
+        return $this->conn->query($query) or die($this->conn->error.__LINE__);
+    }
+
+    public function destroySession(){
+        if (!isset($_SESSION)) {
+        session_start();
+        }
+        if(isSet($_SESSION['uid']))
+        {
+            unset($_SESSION['uid']);
+            unset($_SESSION['name']);
+            unset($_SESSION['email']);
+            unset($_SESSION['isadmin']);
+            unset($_SESSION['savedListings']);
+            $info='info';
+            if(isSet($_COOKIE[$info]))
+            {
+                setcookie ($info, '', time() - $cookie_time);
+            }
+            $msg="Logged Out Successfully...";
+        }
+        else
+        {
+            $msg = "Not logged in...";
+        }
+        return $msg;
+    }
 
 }
 
