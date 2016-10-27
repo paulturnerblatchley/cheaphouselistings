@@ -13,10 +13,6 @@ body{
 	text-align: left;
 }
 
-.viewport{
-	min-height: 300px;
-}
-
 h1,h2,h3,h4,h5,h6 {
 	font-family: "Open Sans", Helvetica, sans-serif;
 }

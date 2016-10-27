@@ -21,11 +21,11 @@
   </head>
 
   <body ng-cloak>
-    <ng-include src="'partials/nav.html'"></ng-include>
-      <div ng-view id="ng-view" autoscroll="true" class="viewport slide-animation">
+    <ng-include ng-show="isReady()" src="'partials/nav.html'" ng-controller="ViewCtrl"></ng-include>
+      <div ng-view id="ng-view" autoscroll="true" class="slide-animation" ng-controller="ViewCtrl">
 
       </div>
-    <ng-include src="'partials/footer.html'"></ng-include>
+    <ng-include ng-show="isReady()" src="'partials/footer.html'" ng-controller="ViewCtrl"></ng-include>
   </body>
   <toaster-container toaster-options="{'time-out': 3000}"></toaster-container>
   <!-- Libs -->

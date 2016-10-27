@@ -1,3 +1,19 @@
+app.controller('ViewCtrl', function($scope, $rootScope) {
+  $scope.$on('$viewContentLoaded', function() {
+    $rootScope.ready = '1';
+    console.log("variable set");
+  });
+  $scope.isReady = function() {
+    if ($rootScope.ready == '1') {
+      console.log("True");
+      return true;
+    } else {
+      console.log("False");
+      return false;
+    }
+  }
+});
+
 // user auth controller
 app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location, $http, auth) {
     //initially set those objects to null to avoid undefined error
