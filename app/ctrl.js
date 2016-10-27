@@ -134,3 +134,7 @@ app.controller('ListingCtrl', function($scope, $rootScope, $route, $location, $h
     };
 
 });
+
+app.controller('FormCtrl', function($scope) {
+
+});
