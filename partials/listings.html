@@ -14,7 +14,7 @@
 		<div class="clearfix listing-display-box" ng-repeat="listing in listings">
 			<div class="clearfix">
 				<h2><a ng-href="/#/listings/{{listing.lid}}">{{listing.address}}</a></h2>
-				<div class="image-repeat-box" ng-repeat="image in listing.images">
+				<div class="image-box" ng-repeat="image in listing.images">
 					<img class="img-responsive" ng-hide="!image" ng-src="../api/v1/uploads/{{image}}" />
 				</div>
 				<h4>{{listing.city}}</h4>

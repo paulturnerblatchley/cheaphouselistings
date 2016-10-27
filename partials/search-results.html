@@ -20,7 +20,7 @@
 			<div ng-hide="noResults()">
 				<div class="clearfix listing-display-box" ng-repeat="listing in searchRes">
 					<div class="clearfix">
-						<h2>{{listing.address}}</h2>
+						<h2><a ng-href="/#/listings/{{listing.lid}}">{{listing.address}}</a></h2>
 						<div class="image-box">
 							<img class="img-responsive" ng-src="../api/v1/uploads/{{listing.images[0]}}" />
 						</div>
