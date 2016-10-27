@@ -12,7 +12,7 @@
 		<div class="page-header">
 			<h1>{{s.address}}</h1>
 		</div>
-    <div class="listing-box col-sm-8">
+    <div class="listing-box col-sm-7">
   		<div class="image-repeat-box" ng-repeat="image in s.images">
   			<img class="img-responsive" ng-hide="!image" ng-src="../api/v1/uploads/{{image}}" />
   		</div>
@@ -28,27 +28,27 @@
   			<p>{{s.listdesc}}</p>
   		</div>
     </div>
-    <div class="contact-box col-sm-4">
+    <div class="contact-box col-sm-offset-1 col-sm-4">
       <h4 class="form-heading">Property Inquiry</h4>
-      <form name="listingInquiry" class="form-horizontal" ng-submit="" ng-controller="formCtrl">
+      <form name="listingInquiry" class="form-horizontal" ng-submit="" ng-controller="FormCtrl">
         <div class="form-group">
           <label class="control-label">Name:</label>
-          <input class="form-control" type="text" ng-model="name">
+          <input class="form-control" type="text" ng-model="name" required>
         </div>
         <div class="form-group">
           <label class="control-label">Email:</label>
-          <input class="form-control" type="text" ng-model="name">
+          <input class="form-control" type="email" ng-model="email" required>
         </div>
         <div class="form-group">
           <label class="control-label">Phone:</label>
-          <input class="form-control" type="text" ng-model="name">
+          <input class="form-control" type="tel" ng-model="phone" required>
         </div>
         <div class="form-group">
           <label class="control-label">Message:</label>
-          <textarea cols="50" rows="4" class="form-control" type="text" ng-model="name" ></textarea>
+          <textarea cols="50" rows="4" class="form-control" type="text" ng-model="message" required></textarea>
         </div>
         <div class="form-group">
-          <button id="contactFormSubmit" class="btn btn-primary">
+          <button id="contactFormSubmit" class="btn btn-primary" data-ng-disabled="listingInquiry.$invalid">
             Submit
           </button>
         </div>
