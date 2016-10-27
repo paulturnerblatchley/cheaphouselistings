@@ -4,10 +4,12 @@
 
 body{
 	background-color: #fff;
+	max-width: 100%;
+	overflow-x: hidden;
+	margin: 0 auto;
 	padding-top: 51px;
 	font: 125%/1.6 "Lora", serif;
 	font-weight: 400;
-	margin: 0 auto;
 	text-align: left;
 }
 
@@ -26,8 +28,8 @@ h4 {font-size:1.618em;font-weight:700;}
 h5 {font-size:1.194em;font-weight:700;}
 h6 {font-size:1em;}
 /* ng-cloak */
-[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng.ng-cloak, .ng-hide {
-    display: none !important;
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
 }
 ul{
 	list-style: none;
@@ -38,9 +40,7 @@ a{
 a:hover{
 	cursor: pointer;
 }
-.btn {
-	width: 100%;
-}
+
 ul.simple-post-list .post-image {
 	float: left;
 	margin-right: 12px;
@@ -154,14 +154,13 @@ ul.simple-post-list {
  * HOMEPAGE
  ****/
  .home-container {
- 	background-color: #bdbec0;
  	position: relative;
  	z-index: 3;
  }
 
  .bg {
- 	background-color: #bdbec0;
- 	background: url("../images/suburb-houses.jpg") no-repeat top center;
+ 	background: linear-gradient(to top left, #00d2ff, #3a7bd5);
+ 	background: #fff url("../images/suburb-houses.jpg") no-repeat top center;
  	background-size: cover;
  	position: fixed;
  	width: 100%;
@@ -176,7 +175,6 @@ ul.simple-post-list {
  }
 
  .jumbotron {
- 	background-color: #bdbec0;
  	background: transparent;
  	color: #fff;
  	height: 350px;
@@ -185,6 +183,17 @@ ul.simple-post-list {
  .jumbotron .container-fluid {
  	width: 80%;
  	padding-top: 48px;
+ }
+
+ .jumbotron .btn-secondary{
+	 background: linear-gradient(to left, rgba(50,118,177, 0.1), rgba(255, 255, 255, 0.2));
+	 border-color: #fff;
+	 color: #fff;
+ }
+
+ .jumbotron .btn-secondary:hover {
+	background-color: #fff;
+	color: #3276b1;
  }
 
  .home-content {
@@ -296,7 +305,9 @@ ul.simple-post-list {
 	.mobile-brand {
 		display: block!important;
 	}
-
+	.jumbotron h1 {
+		font-size: 63px;
+	}
 
 }
 
@@ -304,9 +315,15 @@ ul.simple-post-list {
 	.jumbotron {
 		padding: 30px 0;
 	}
+	.jumbotron h1 {
+		font-size: 4em;
+	}
 }
 
 @media (max-width: 450px) {
+	.jumbotron {
+		padding: 15px 0;
+	}
 	.jumbotron p {
 		font-size: 16px;
 	}
