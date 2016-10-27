@@ -111,6 +111,7 @@ app.config([
                 $rootScope.uid = results.uid;
                 $rootScope.name = results.name;
                 $rootScope.email = results.email;
+                $rootScope.phone = results.phone;
                 $rootScope.isadmin = results.isadmin;
                 $rootScope.savedListings = results.savedListings;
             } else {
@@ -118,6 +119,7 @@ app.config([
                 $rootScope.uid = '';
                 $rootScope.name = 'Guest';
                 $rootScope.email = '';
+                $rootScope.phone = '';
                 $rootScope.isadmin = 0;
                 $rootScope.savedListings = '';
             }
