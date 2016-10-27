@@ -58,11 +58,13 @@ class DbHandler {
         $sess = array();
         if(isset($_SESSION['uid']))
         {
+            $uid = $_SESSION['uid'];
             $sess["uid"] = $_SESSION['uid'];
             $sess["name"] = $_SESSION['name'];
             $sess["email"] = $_SESSION['email'];
+            $sess["phone"] = $_SESSION['phone'];
             $sess["isadmin"] = $_SESSION['isadmin'];
-            $r = $this->conn->query("select savedListings from customers_auth where uid=1");
+            $r = $this->conn->query("select savedListings from customers_auth where uid=". $uid);
             $row = $r->fetch_assoc();
             foreach( $row AS $value) {
               $sess["savedListings"] = $value;
@@ -73,6 +75,7 @@ class DbHandler {
             $sess["uid"] = '';
             $sess["name"] = 'Guest';
             $sess["email"] = '';
+            $sess["phone"] = '';
             $sess["isadmin"] = NULL;
             $sess["savedListings"] = NULL;
         }
@@ -104,6 +107,7 @@ class DbHandler {
             unset($_SESSION['uid']);
             unset($_SESSION['name']);
             unset($_SESSION['email']);
+            unset($_SESSION['phone']);
             unset($_SESSION['isadmin']);
             unset($_SESSION['savedListings']);
             $info='info';

@@ -4,6 +4,7 @@ $app->get('/session', function() {
     $session = $db->getSession();
     $response["uid"] = $session['uid'];
     $response["email"] = $session['email'];
+    $response["phone"] = $session['phone'];
     $response["name"] = $session['name'];
     $response["isadmin"] = $session['isadmin'];
     $response["savedListings"] = $session['savedListings'];
@@ -18,7 +19,7 @@ $app->post('/login', function() use ($app) {
     $db = new DbHandler();
     $password = $r->customer->password;
     $email = $r->customer->email;
-    $user = $db->getOneRecord("select uid,name,password,email,savedListings,isadmin,created from customers_auth where phone='$email' or email='$email'");
+    $user = $db->getOneRecord("select uid,name,password,email,phone,savedListings,isadmin,created from customers_auth where email='$email'");
     if ($user != NULL) {
         if(passwordHash::check_password($user['password'],$password)){
         $response['status'] = "success";
@@ -26,13 +27,15 @@ $app->post('/login', function() use ($app) {
         $response['name'] = $user['name'];
         $response['uid'] = $user['uid'];
         $response['email'] = $user['email'];
+        $response['phone'] = $user['phone'];
         $response['createdAt'] = $user['created'];
         if (!isset($_SESSION)) {
             session_start();
         }
         $_SESSION['uid'] = $user['uid'];
-        $_SESSION['email'] = $email;
+        $_SESSION['email'] = $user['email'];
         $_SESSION['name'] = $user['name'];
+        $_SESSION['phone'] = $user['phone'];
         $_SESSION['isadmin'] = $user['isadmin'];
         $_SESSION['savedListings'] = $user['savedListings'];
         } else {
