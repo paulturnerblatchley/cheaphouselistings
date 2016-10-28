@@ -1,4 +1,3 @@
-
 var serviceBase = 'api/v1/';
 
 app.factory("auth", ['$http', 'toaster',
@@ -44,6 +43,7 @@ app.factory("listings", ['$http', 'auth', 'toaster',
           return $http.get(serviceBase + q).then(function(results) {
 
             o.listings = results.data;
+            console.log(o.listings);
 
             for(i=0; i<results.data.length;i++) {
               o.listings[i].images = results.data[i].images.split(', ');

@@ -1,5 +1,5 @@
 <?php
-$app->get('/session', function() {
+$app->get('/session', function() use ($app) {
     $db = new DbHandler();
     $session = $db->getSession();
     $response["uid"] = $session['uid'];
@@ -136,13 +136,13 @@ $app->post('/listings', function() use ($app) {
     }
 });
 
-$app->get('/listings', function() {
+$app->get('/listings', function() use ($app) {
   $db = new DbHandler();
   $listings = $db->getListings();
   echoResponse(200, $listings);
 });
 
-$app->post('/uploader',function() use ($app) {
+$app->post('/uploader', function() use ($app) {
 
     $imageinfo = getimagesize($_FILES['img']['tmp_name']);
     if($imageinfo['mime'] != 'image/gif' && $imageinfo['mime'] != 'image/jpeg' && $imageinfo['mime'] != 'image/png') {
@@ -181,6 +181,35 @@ $app->post('/saveListing', function() use ($app) {
         $response["message"] = "That listing is already saved to your Dashboard.";
         echoResponse(201, $response);
     }
+});
 
+// listing inquiry form post
+$app->post('/formSend', function() use ($app) {
+    $to = "paulturnerblatchley@gmail.com";
+    $r = json_decode($app->request->getBody());
+    $fromName  = $r->formData->name;
+    $fromEmail = $r->formData->email;
+    $subject   = "CHL Inquiry about:" . $r->formData->listing;
+    $message   = $r->formData->message;
+    $headers = 'From: '. $fromName . '<'. $fromEmail . '>' . "\r\n";
+    $headers .= 'Reply-To: '. $fromName . '<'. $fromEmail . '>' . "\r\n";
+    $headers .= 'X-Mailer: PHP/' . phpversion();
+    $result = mail($to, $subject, $message, $headers);
+    if ($result) {
+        $response["status"] = "success";
+        $response["message"] = "Message Sent";
+        echoResponse(200, $response);
+    } else {
+        $response["status"] = "error";
+        $response["message"] = "Message failed to send. Please try again.";
+        $response["to"] = $to;
+        $response["fromName"] = $fromName;
+        $response["fromEmail"] = $fromEmail;
+        $response["subject"] = $subject;
+        $response["test"] = $message;
+        $response["headers"] = $headers;
+        $response["result"] = $result;
+        echoResponse(201, $response);
+    }
 });
 ?>

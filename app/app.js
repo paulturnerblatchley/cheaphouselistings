@@ -26,7 +26,6 @@ app.config([
                 resolve: {
                     getSavedListings: ['auth', 'savedListings', function(auth, savedListings) {
                         return auth.get('session').then(function(results) {
-                          console.log(results);
                             var lid = results.savedListings.split(",");
                             for (i = 1; i < lid.length; i++) {
                               savedListings.get('listings', lid[i]);

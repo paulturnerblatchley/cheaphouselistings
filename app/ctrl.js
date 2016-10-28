@@ -1,14 +1,11 @@
 app.controller('ViewCtrl', function($scope, $rootScope) {
   $scope.$on('$viewContentLoaded', function() {
     $rootScope.ready = '1';
-    console.log("variable set");
   });
   $scope.isReady = function() {
     if ($rootScope.ready == '1') {
-      console.log("True");
       return true;
     } else {
-      console.log("False");
       return false;
     }
   }
@@ -63,7 +60,7 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
 });
 
 // listing controller
-app.controller('ListingCtrl', function($scope, $rootScope, $route, $location, $http, $localStorage, $sessionStorage, auth, listings, singlelisting, searchListings, savedListings, Data) {
+app.controller('ListingCtrl', function($scope, $route, $location, $http, $localStorage, $sessionStorage, auth, listings, singlelisting, searchListings, savedListings, Data) {
     $scope.listings = listings.listings;
     $scope.newlisting = {};
     $scope.newlisting = {address: '', city: '', price: '', sqft: '', lotsize: '', beds: '', baths: '', listdesc: '', images: ''};
@@ -106,7 +103,6 @@ app.controller('ListingCtrl', function($scope, $rootScope, $route, $location, $h
     $scope.saved = savedListings.listings;
 
     $scope.hasSavedListings = function() {
-      console.log($scope.saved);
       if ($scope.saved[0] != null) {
         return true;
       } else {
@@ -151,6 +147,27 @@ app.controller('ListingCtrl', function($scope, $rootScope, $route, $location, $h
 
 });
 
-app.controller('FormCtrl', function($scope) {
+app.controller('FormCtrl', function($scope, $http, auth, singlelisting) {
+    $scope.formData = {};
+    $scope.getUser = function() {
+        auth.get('session').then( function(res) {
+            $scope.user = res;
+            $scope.formData.name = $scope.user.name;
+            $scope.formData.email = $scope.user.email;
+            $scope.formData.phone = $scope.user.phone;
+        });
+    };
 
+    $scope.getUser();
+    
+
+    $scope.formData.listing = singlelisting.listing.address;
+    
+    $scope.submitInquiry = function(formData) {
+        auth.post('formSend',{
+            formData: formData
+        }).then(function(data) {
+            auth.toast(data);
+        })
+    }
 });

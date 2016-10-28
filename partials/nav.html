@@ -15,13 +15,13 @@
     </div>
   </div>
   <div id="navbar" class="navbar-collapse collapse" aria-expanded="true" style="height:1px" >
-    <ul class="nav navbar-nav pull-right">
-      <li class="mobile-brand" data-toggle="collapse" data-target="#navbar"><a rel="home" title="Sign Up" href="/">Home</a></li>
-      <li data-toggle="collapse" data-target="#navbar" ng-show="isLoggedIn()"><a title="listings" href="/#/dashboard">{{name}}</a></li>
-      <li data-toggle="collapse" data-target="#navbar" ng-show="isAdmin()"><a title="listings" href="/#/listings/new-listing">Create A Listing</a></li>
-      <li data-toggle="collapse" data-target="#navbar" ng-hide="isLoggedIn()"><a title="Sign Up" href="/#/signup">Sign Up</a></li>
-      <li data-toggle="collapse" data-target="#navbar" ng-hide="isLoggedIn()"><a title="Login" href="/#/login">Log In</a></li>
-      <li data-toggle="collapse" data-target="#navbar" ng-show="isLoggedIn()"><a title="Logout" ng-click="logout();">Log Out</a></li>
+    <ul class="nav navbar-nav pull-right" data-toggle="collapse" data-target="#navbar">
+      <li class="mobile-brand" ><a rel="home" title="Sign Up" href="/">Home</a></li>
+      <li ng-show="isLoggedIn()"><a title="listings" href="/#/dashboard">{{name}}</a></li>
+      <li ng-show="isAdmin()"><a title="listings" href="/#/listings/new-listing">Create A Listing</a></li>
+      <li ng-hide="isLoggedIn()"><a title="Sign Up" href="/#/signup">Sign Up</a></li>
+      <li ng-hide="isLoggedIn()"><a title="Login" href="/#/login">Log In</a></li>
+      <li ng-show="isLoggedIn()"><a title="Logout" ng-click="logout();">Log Out</a></li>
     </ul>
   </div>
 </nav>

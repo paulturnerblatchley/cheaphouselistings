@@ -22,7 +22,7 @@
 
   <body ng-cloak>
     <ng-include ng-show="isReady()" src="'partials/nav.html'" ng-controller="ViewCtrl"></ng-include>
-      <div ng-view id="ng-view" autoscroll="true" class="slide-animation" ng-controller="ViewCtrl">
+      <div ng-view id="ng-view" autoscroll="true" class="" ng-controller="ViewCtrl">
 
       </div>
     <ng-include ng-show="isReady()" src="'partials/footer.html'" ng-controller="ViewCtrl"></ng-include>
