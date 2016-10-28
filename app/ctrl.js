@@ -57,6 +57,14 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
             $location.path('login');
         });
     };
+    $scope.hideMenu = function() {
+      var nav = document.getElementById("navbar");
+      if (nav.className == "navbar-collapse collapse") {
+          nav.className = "navbar-collapse collapse in";
+      } else {
+        nav.className = "navbar-collapse collapse";
+      }
+    }
 });
 
 // listing controller
@@ -159,10 +167,10 @@ app.controller('FormCtrl', function($scope, $http, auth, singlelisting) {
     };
 
     $scope.getUser();
-    
+
 
     $scope.formData.listing = singlelisting.listing.address;
-    
+
     $scope.submitInquiry = function(formData) {
         auth.post('formSend',{
             formData: formData

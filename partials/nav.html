@@ -15,7 +15,7 @@
     </div>
   </div>
   <div id="navbar" class="navbar-collapse collapse" aria-expanded="true" style="height:1px" >
-    <ul class="nav navbar-nav pull-right" data-toggle="collapse" data-target="#navbar">
+    <ul class="nav navbar-nav pull-right" ng-click="hideMenu()">
       <li class="mobile-brand" ><a rel="home" title="Sign Up" href="/">Home</a></li>
       <li ng-show="isLoggedIn()"><a title="listings" href="/#/dashboard">{{name}}</a></li>
       <li ng-show="isAdmin()"><a title="listings" href="/#/listings/new-listing">Create A Listing</a></li>
