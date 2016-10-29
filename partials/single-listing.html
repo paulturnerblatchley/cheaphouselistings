@@ -28,7 +28,7 @@
   			<p>{{s.listdesc}}</p>
   		</div>
     </div>
-    <div class="contact-box col-sm-offset-1 col-sm-4">
+    <div ng-hide="isAdmin()" class="contact-box col-sm-offset-1 col-sm-4" ng-controller="authCtrl">
       <h4 class="form-heading">Property Inquiry</h4>
       <form name="listingInquiry" class="form-horizontal" ng-submit="submitInquiry(formData)" ng-controller="FormCtrl">
         <div class="form-group">
@@ -45,7 +45,7 @@
         </div>
         <div class="form-group">
           <label class="control-label">Listing:</label>
-          <input class="form-control" type="tel" ng-model="formData.listing" required>
+          <input class="form-control" type="text" ng-model="formData.listing" required>
         </div>
         <div class="form-group">
           <label class="control-label">Message:</label>
@@ -54,6 +54,48 @@
         <div class="form-group">
           <button id="contactFormSubmit" class="btn btn-primary" data-ng-disabled="listingInquiry.$invalid">
             Submit
+          </button>
+        </div>
+      </form>
+    </div>
+    <div ng-show="isAdmin()" class="contact-box col-sm-offset-1 col-sm-4" ng-controller="authCtrl">
+      <h4 class="form-heading">Edit Listing</h4>
+      <form name="listingUpdate" class="form-horizontal" ng-submit="updateListing(s)" ng-controller="ListingCtrl">
+        <div class="form-group">
+          <label class="control-label">Address:</label>
+          <input class="form-control" type="text" ng-model="s.address">
+        </div>
+        <div class="form-group">
+          <label class="control-label">City:</label>
+          <input class="form-control" type="text" ng-model="s.city">
+        </div>
+        <div class="form-group">
+          <label class="control-label">Price:</label>
+          <input class="form-control" type="text" ng-model="s.price">
+        </div>
+        <div class="form-group">
+          <label class="control-label">Beds:</label>
+          <input class="form-control" type="text" ng-model="s.beds">
+        </div>
+        <div class="form-group">
+          <label class="control-label">Baths:</label>
+          <input class="form-control" type="text" ng-model="s.baths">
+        </div>
+        <div class="form-group">
+          <label class="control-label">Square Feet:</label>
+          <input class="form-control" type="text" ng-model="s.sqft">
+        </div>
+        <div class="form-group">
+          <label class="control-label">Lot Size:</label>
+          <input class="form-control" type="text" ng-model="s.lotsize">
+        </div>
+        <div class="form-group">
+          <label class="control-label">Listing Description:</label>
+          <textarea cols="50" rows="4" class="form-control" type="text" ng-model="s.listdesc"></textarea>
+        </div>
+        <div class="form-group">
+          <button id="updateListingSubmit" class="btn btn-primary">
+            Update
           </button>
         </div>
       </form>

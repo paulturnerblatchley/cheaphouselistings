@@ -282,6 +282,11 @@ ul.simple-post-list {
 	 	padding-top: 0;
 	 }
 }
+@media (max-width: 897px) {
+	.navbar .navbar-brand {
+		min-width: 70px;
+	}
+}
 @media (max-width: 767px) {
 	/* navigation */
 	.navbar-collapse {

@@ -183,6 +183,35 @@ $app->post('/saveListing', function() use ($app) {
     }
 });
 
+$app->post('/editListing', function() use ($app) {
+  $db = new DbHandler();
+  $r = json_decode($app->request->getBody());
+  $lid = $r->listing->lid;
+  $tabble_name = "listings";
+  $column_names = array(
+    'address' => $r->listing->address,
+    'city' => $r->listing->city,
+    'price' => $r->listing->price,
+    'sqft' => $r->listing->sqft,
+    'lotsize' => $r->listing->lotsize,
+    'beds' => $r->listing->beds,
+    'baths' => $r->listing->baths,
+    'listdesc' => $r->listing->listdesc
+  );
+  foreach ($column_names as $key => $value) {
+    $result = $db->updateRow($tabble_name, $key, $value, 'lid', $lid);
+  }
+  if ($result != NULL) {
+      $response["status"] = "success";
+      $response["message"] = "Address was updated";
+      echoResponse(200, $response);
+  } else {
+      $response["status"] = "error";
+      $response["message"] = "Failed to update address";
+      echoResponse(201, $response);
+  }
+});
+
 // listing inquiry form post
 $app->post('/formSend', function() use ($app) {
     $to = "paulturnerblatchley@gmail.com";

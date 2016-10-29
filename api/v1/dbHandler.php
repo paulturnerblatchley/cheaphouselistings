@@ -84,7 +84,11 @@ class DbHandler {
 
     public function getListings(){
       $r = $this->conn->query("SELECT * FROM `listings`");
-      return $result = $r->fetch_all(MYSQLI_ASSOC);
+      $listings = array();
+      while ($row = $r->fetch_assoc()) {
+          array_push($listings, $row);
+      }
+      return $listings;
     }
 
     public function updateRow($table_name,$column_name,$column_value,$id,$id_value) {

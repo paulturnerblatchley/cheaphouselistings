@@ -104,6 +104,7 @@ app.config([
 ])
 .run(function ($rootScope, $location, auth) {
     $rootScope.$on("$routeChangeStart", function (event, next, current) {
+      $rootScope.ready = '0';
         auth.get('session').then(function (results) {
             if (results.uid) {
                 $rootScope.authenticated = true;

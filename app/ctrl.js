@@ -64,6 +64,11 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
       } else {
         nav.className = "navbar-collapse collapse";
       }
+    };
+    if (window.innerWidth <= '897') {
+      $scope.siteTitle = 'CHL';
+    } else {
+      $scope.siteTitle = "Cheap House Listings";
     }
 });
 
@@ -151,6 +156,14 @@ app.controller('ListingCtrl', function($scope, $route, $location, $http, $localS
         }).then(function(results){
             auth.toast(results);
         });
+    };
+
+    $scope.updateListing = function(s) {
+      auth.post('editListing', {
+        listing: s
+      }).then( function(results) {
+          auth.toast(results);
+      });
     };
 
 });
