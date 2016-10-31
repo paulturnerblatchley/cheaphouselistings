@@ -11,31 +11,66 @@
 		<div class="page-header">
 			<h1>Listings</h1>
 		</div>
-		<div class="clearfix listing-display-box" ng-repeat="listing in listings">
-			<div class="clearfix">
-				<h2><a ng-href="/#/listings/{{listing.lid}}">{{listing.address}}</a></h2>
-				<div class="image-box" ng-repeat="image in listing.images">
-					<img class="img-responsive" ng-hide="!image" ng-src="../api/v1/uploads/{{image}}" />
-				</div>
-				<h4>{{listing.city}}</h4>
-				<h5>Offered at ${{listing.price}}</h5>
-				<ul>
-					<li>Beds: {{listing.beds}}</li>
-					<li>Baths: {{listing.baths}}</li>
-					<li>Square Footage: {{listing.sqft}}</li>
-					<li>Lot Size: {{listing.lotsize}}</li>
-				</ul>
-        <div class="row">
-				  <p class="col-sm-6">{{listing.listdesc}}</p>
-				  <br>
-        </div>
-        <div class="row">
-          <div class="col-sm-3">
-    				<button ng-click="saveListing(listing)" class="btn btn-primary">Save Listing</button>
-          </div>
-        </div>
+		<div class="col-sm-4">
+			<h3>Filters</h2>
+			<div class="filter">
+				<h5>City</h5>
+				<button ng-click="listingFilters.city = listing.city" ng-repeat="listing in listings | unique: 'city'">{{listing.city}}</button>
 			</div>
-			<hr>
+			<div class="filter">
+				<h5>Price</h5>
+				<button ng-click="listingFilters.price = listing.price" ng-repeat="listing in listings | unique: 'price'">{{listing.price}}</button>
+			</div>
+			<div class="filter">
+				<h5>Beds</h5>
+				<button ng-click="listingFilters.beds = listing.beds" ng-repeat="listing in listings | unique: 'beds'">{{listing.beds}}</button>
+			</div>
+			<div class="filter">
+				<h5>Baths</h5>
+				<button ng-click="listingFilters.baths = listing.baths" ng-repeat="listing in listings | unique: 'baths'">{{listing.baths}}</button>
+			</div>
+			<div class="filter">
+				<h5>Square Feet</h5>
+				<button ng-click="listingFilters.sqft = listing.sqft" ng-repeat="listing in listings | unique: 'sqft'">{{listing.sqft}}</button>
+			</div>
+			<div class="filter">
+				<h5>Lot Size</h5>
+				<button ng-click="listingFilters.lotsize = listing.lotsize" ng-repeat="listing in listings | unique: 'lotsize'">{{listing.lotsize}}</button>
+			</div>
+			<div class="filter">
+				<h5>Keywords</h5>
+				<input type="text" ng-model="listingFilters.listdesc">
+			</div>
+			<br>
+			<button ng-click="listingFilters = {}">Reset</button>
+		</div>
+		<div class="col-sm-8">
+			<div id="listings" class="clearfix listing-display-box" ng-repeat="listing in listings | filter: listingFilters">
+				<div class="clearfix">
+					<h2><a ng-href="/#/listings/{{listing.lid}}">{{listing.address}}</a></h2>
+					<div class="image-box" ng-repeat="image in listing.images">
+						<img class="img-responsive" ng-hide="!image" ng-src="../api/v1/uploads/{{image}}" />
+					</div>
+					<h4>{{listing.city}}</h4>
+					<h5>Offered at ${{listing.price}}</h5>
+					<ul>
+						<li>Beds: {{listing.beds}}</li>
+						<li>Baths: {{listing.baths}}</li>
+						<li>Square Footage: {{listing.sqft}}</li>
+						<li>Lot Size: {{listing.lotsize}}</li>
+					</ul>
+	        		<div class="row">
+					  	<p class="col-sm-6">{{listing.listdesc}}</p>
+					  	<br>
+	        		</div>
+	        		<div class="row">
+	          			<div class="col-sm-3">
+	    					<button ng-click="saveListing(listing)" class="btn btn-primary">Save Listing</button>
+	          			</div>
+	        		</div>
+				</div>
+				<hr>
+			</div>
 		</div>
 	</div>
 </div>

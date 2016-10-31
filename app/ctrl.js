@@ -210,6 +210,8 @@ app.controller('ListingCtrl', function($scope, $route, $location, $http, $localS
       });
     };
 
+    $scope.listingFilters = { };
+
 });
 
 app.controller('FormCtrl', function($scope, $http, auth, singlelisting) {
