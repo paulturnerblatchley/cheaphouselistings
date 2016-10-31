@@ -138,6 +138,30 @@ app.controller('ListingCtrl', function($scope, $route, $location, $http, $localS
     }
 
     $scope.$storage = $localStorage;
+    $scope.priceOptions = [
+        { name: '$0 - $100,000', value: '0' },
+        { name: '$100,000 - $300,000', value: '1' },
+        { name: '$300,000 - $500,000', value: '3' },
+        { name: '$500,000 - $1,000,000', value: '5' },
+        { name: '$1,000,000+', value: '10' }
+    ];
+    $scope.bedOptions = [
+        { name: '1 Bed', value: '1' },
+        { name: '2 Beds', value: '2' },
+        { name: '3 Beds', value: '3' },
+        { name: '4 Beds', value: '4' },
+        { name: '5+ Beds', value: '5' }
+    ];
+    $scope.bathOptions = [
+        { name: '1 Bath', value: '1' },
+        { name: '2 Baths', value: '2' },
+        { name: '3 Baths', value: '3' },
+        { name: '4 Baths', value: '4' },
+        { name: '5+ Baths', value: '5' }
+    ];
+    $scope.price = $scope.priceOptions[0].value;
+    $scope.beds = $scope.bedOptions[0].value;
+    $scope.baths = $scope.bathOptions[0].value;
     $scope.setParams = function(city,price,beds,baths) {
         delete $scope.$storage.city;
         delete $scope.$storage.price;
@@ -154,7 +178,6 @@ app.controller('ListingCtrl', function($scope, $route, $location, $http, $localS
             $route.reload();
         }
     };
-
 
     $scope.noResults = function() {
         if($scope.searchRes[0] == null) {

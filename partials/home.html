@@ -26,30 +26,15 @@
 						<input class="form-control" type="text" placeholder="City" ng-model="city">
 					</div>
 					<div class="form-group price-search col-sm-3">
-						<select class="form-control" name="cost" ng-model="price">
-							<option value="0">$0 - $100,000</option>
-							<option value="1">$100,000 - $300,000</option>
-							<option value="3">$300,000 - $500,000</option>
-							<option value="5">$500,000 - $1,000,000</option>
-							<option value="10">$1,000,000+</option>
+						<select class="form-control" name="cost" ng-model="price" ng-options="option.value as option.name for option in priceOptions">
 						</select>
 					</div>
 					<div class="form-group bed-search col-sm-2">
-						<select class="form-control" name="beds" ng-model="beds">
-							<option value="1">1 Bed</option>
-							<option value="2">2 Beds</option>
-							<option value="3">3 Beds</option>
-							<option value="4">4 Beds</option>
-							<option value="5">5+ Beds</option>
+						<select class="form-control" name="beds" ng-model="beds" ng-options="option.value as option.name for option in bedOptions">
 						</select>
 					</div>
 					<div class="form-group bath-search col-sm-2">
-						<select class="form-control" name="baths" ng-model="baths">
-							<ng-option value="1">1 Bath</option>
-							<option value="2">2 Baths</option>
-							<option value="3">3 Baths</option>
-							<option value="4">4 Baths</option>
-							<option value="5">5+ Baths</option>
+						<select class="form-control" name="baths" ng-model="baths" ng-options="option.value as option.name for option in bathOptions">
 						</select>
 					</div>
 					<div class="form-group submit-search col-sm-2">
