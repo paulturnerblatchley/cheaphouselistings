@@ -196,20 +196,43 @@ $app->post('/editListing', function() use ($app) {
     'lotsize' => $r->listing->lotsize,
     'beds' => $r->listing->beds,
     'baths' => $r->listing->baths,
-    'listdesc' => $r->listing->listdesc
+    'listdesc' => $r->listing->listdesc,
+    'images' => $r->listing->images
   );
+  /*$imgs = $r->listing->images;
+  for ($i = 0; $i < count($imgs); $i++) {
+    $db->addToRow($tabble_name, 'images', $imgs[$i], 'lid', $lid);
+  }*/
   foreach ($column_names as $key => $value) {
     $result = $db->updateRow($tabble_name, $key, $value, 'lid', $lid);
   }
   if ($result != NULL) {
       $response["status"] = "success";
-      $response["message"] = "Address was updated";
+      $response["message"] = "Listing was updated";
       echoResponse(200, $response);
   } else {
       $response["status"] = "error";
-      $response["message"] = "Failed to update address";
+      $response["message"] = "Failed to update listing";
       echoResponse(201, $response);
   }
+});
+
+$app->post('/deleteImage', function() use ($app) {
+  $db = new DbHandler();
+  $img = json_decode($app->request->getBody());
+  $db->removeFromRow($img->img);
+  $file_to_delete = "uploads/".$img->img;
+  $result = unlink($file_to_delete);
+  if ($result != NULL) {
+    $response["status"] = "success";
+    $response["message"] = "Image Deleted";
+    echoResponse(200, $response);
+  } else {
+    $response["status"] = "error";
+    $response["message"] = "Image failed to delete. Please try again";
+    echoResponse(201, $response);
+  }
+
 });
 
 // listing inquiry form post

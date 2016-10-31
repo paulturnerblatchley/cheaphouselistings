@@ -21,7 +21,7 @@
   </head>
 
   <body ng-cloak>
-    <ng-include ng-show="isReady()" src="'partials/nav.html'" ng-controller="ViewCtrl"></ng-include>
+    <ng-include src="'partials/nav.html'" ng-controller="ViewCtrl"></ng-include>
       <div ng-view id="ng-view" autoscroll="true" class="" ng-controller="ViewCtrl">
 
       </div>
@@ -41,6 +41,6 @@
   <script src="app/data.js"></script>
   <script src="app/directives.js"></script>
   <script src="app/ctrl.js"></script>
-  <script src="js/jquery-3.1.1.slim.min.js"></script>
+  <script src="js/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
 </html>

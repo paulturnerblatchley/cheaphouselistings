@@ -98,8 +98,13 @@ class DbHandler {
 
     public function addToRow($table_name,$column_name,$column_value,$id,$id_value) {
         // UPDATE `customers_auth` SET savedListings = CONCAT_WS(',',savedListings,'3') WHERE uid='id';
-        $query = "UPDATE " . $table_name . " SET " . $column_name . "= CONCAT_WS(','," . $column_name . ", '" . $column_value . "') WHERE " . $id . "=" . $id_value;
+        $query = "UPDATE " . $table_name . " SET " . $column_name . "= CONCAT_WS(','," . $column_name . ",'" . $column_value . "') WHERE " . $id . "=" . $id_value;
         return $this->conn->query($query) or die($this->conn->error.__LINE__);
+    }
+
+    public function removeFromRow($img) {
+      $query = "UPDATE listings SET images = REPLACE(images, '". $img .", ', '')";
+      return $this->conn->query($query) or die($this->conn->error.__LINE__);
     }
 
     public function destroySession(){

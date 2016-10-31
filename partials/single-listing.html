@@ -13,8 +13,26 @@
 			<h1>{{s.address}}</h1>
 		</div>
     <div class="listing-box col-sm-7">
-  		<div class="image-repeat-box" ng-repeat="image in s.images">
-  			<img class="img-responsive" ng-hide="!image" ng-src="../api/v1/uploads/{{image}}" />
+      <div id="listing-carousel" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li ng-repeat="image in s.images" data-target="#listing-carousel" data-slide-to="{{$index}}" ng-class="{active: $first}"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+          <div class="single-img item" ng-class="{active:$first}" ng-repeat="image in s.images">
+            <img class="img-responsive" ng-hide="!image" ng-src="../api/v1/uploads/{{image}}"/>
+            <div ng-show="isAdmin()" ng-controller="authCtrl">
+              <i ng-click="deleteFile(image)" class="img-delete glyphicon glyphicon-remove-sign" ng-controller="ListingCtrl"></i>
+            </div>
+          </div>
+        </div>
+        <a class="left carousel-control" data-target="#listing-carousel" role="button" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" data-target="#listing-carousel" role="button" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
   		</div>
   		<div>
   			<h4>{{s.city}}</h4>
@@ -94,7 +112,11 @@
           <textarea cols="50" rows="4" class="form-control" type="text" ng-model="s.listdesc"></textarea>
         </div>
         <div class="form-group">
-          <button id="updateListingSubmit" class="btn btn-primary">
+            <label class="control-label" for="images">Images</label>
+            <input type="file" id="file" name="file" accept="image/*" file-model="myFile" ng-model="s.images" multiple>
+        </div>
+        <div class="form-group">
+          <button id="updateListingSubmit" class="btn btn-primary" ng-click="uploadFile()">
             Update
           </button>
         </div>

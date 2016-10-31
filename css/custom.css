@@ -127,6 +127,7 @@ ul.simple-post-list {
 /* search bar */
 .search-bar {
 	height: 60px;
+	width: 50px;
 }
 
 .search-bar input {
@@ -135,7 +136,7 @@ ul.simple-post-list {
 	border: 0;
 	border-left: 1px solid #e7e7e7;
 	border-bottom: 1px solid #e7e7e7;
-	width: 100%;
+	width: 10000px;
 	height: 59.5px;
 	padding: 0 20px;
 	font-size: 1.3em;
@@ -250,6 +251,31 @@ ul.simple-post-list {
  }
 
  /*
+ * SINGLE LISTINGS
+ ****/
+ .single-img {
+	 position:relative;
+ }
+
+ .single-img:hover .img-delete {
+	 display: block;
+ }
+
+	.img-delete {
+		display: none;
+		position:absolute;
+		top: 15px;
+		right: 47%;
+		color: #fff;
+		font-size: 36px;
+		text-shadow: 0px 0px 1px #000;
+	}
+
+	.img-delete:hover {
+		cursor: pointer;
+		color: #f00;
+	}
+ /*
  * FOOTER
  ****/
  footer {
@@ -266,11 +292,12 @@ ul.simple-post-list {
 	 height: 250px;
  }
 
- .footer-sep {
- }
-
  .footer-bottom {
 	 height: 50px;
+ }
+
+ footer ul.nav {
+	 background-color: transparent;
  }
 
 /*

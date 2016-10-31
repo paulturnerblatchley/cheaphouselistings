@@ -94,7 +94,7 @@ app.controller('ListingCtrl', function($scope, $route, $location, $http, $localS
         auth.post('listings', {
             listing: listing
         }).then(function (results) {
-            auth.toast(results)
+            auth.toast(results);
             if (results.status == "success") {
                 $location.path('listings/' + results.lid);
             }
@@ -108,6 +108,20 @@ app.controller('ListingCtrl', function($scope, $route, $location, $http, $localS
             Data('uploader').postImage(files[i], function(response) {
             });
         }
+    };
+
+    $scope.deleteFile = function(img) {
+      auth.post('deleteImage', {
+        img:img
+      }).then(function(res){
+          auth.toast(res);
+          if (res.status == "success") {
+            var index = $scope.s.images.indexOf(img);
+            if (index > -1) {
+              $scope.s.images.splice(index, 1);
+            }
+          }
+      });
     };
 
     $scope.s = singlelisting.listing;
@@ -159,6 +173,11 @@ app.controller('ListingCtrl', function($scope, $route, $location, $http, $localS
     };
 
     $scope.updateListing = function(s) {
+      var f = document.getElementById('file').files;
+      for (i=0; i<f.length; i++) {
+        s.images += ", " + f[i].name;
+      }
+      console.log(s);
       auth.post('editListing', {
         listing: s
       }).then( function(results) {
