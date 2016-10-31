@@ -121,6 +121,7 @@ app.controller('ListingCtrl', function($scope, $route, $location, $http, $localS
               $scope.s.images.splice(index, 1);
             }
           }
+          $route.reload();
       });
     };
 
@@ -205,6 +206,7 @@ app.controller('ListingCtrl', function($scope, $route, $location, $http, $localS
         listing: s
       }).then( function(results) {
           auth.toast(results);
+          $route.reload();
       });
     };
 

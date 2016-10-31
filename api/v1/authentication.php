@@ -199,10 +199,6 @@ $app->post('/editListing', function() use ($app) {
     'listdesc' => $r->listing->listdesc,
     'images' => $r->listing->images
   );
-  /*$imgs = $r->listing->images;
-  for ($i = 0; $i < count($imgs); $i++) {
-    $db->addToRow($tabble_name, 'images', $imgs[$i], 'lid', $lid);
-  }*/
   foreach ($column_names as $key => $value) {
     $result = $db->updateRow($tabble_name, $key, $value, 'lid', $lid);
   }

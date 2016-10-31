@@ -103,7 +103,7 @@ class DbHandler {
     }
 
     public function removeFromRow($img) {
-      $query = "UPDATE listings SET images = REPLACE(images, '". $img .", ', '')";
+      $query = "UPDATE listings SET images = REPLACE(images, '". $img ."', '')";
       return $this->conn->query($query) or die($this->conn->error.__LINE__);
     }
 

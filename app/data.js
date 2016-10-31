@@ -68,8 +68,17 @@ app.factory("singlelisting", ['$http',
               if (results.data[i].lid == lid) {
                 o.listing = results.data[i];
 
-                o.listing.images = results.data[i].images.split(', ');
+                Array.prototype.clean = function(deleteValue) {
+                  for (var i = 0; i < this.length; i++) {
+                    if (this[i] == deleteValue) {         
+                      this.splice(i, 1);
+                      i--;
+                    }
+                  }
+                  return this;
+                };
 
+                o.listing.images = results.data[i].images.split(', ').clean("");
                 o.listing.price = o.listing.price.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
               }
