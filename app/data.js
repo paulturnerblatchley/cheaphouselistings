@@ -104,6 +104,7 @@ app.factory("savedListings", ['$http',
             if (results.data[i].lid == lid) {
               results.data[i].price = results.data[i].price.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
               o.listings.push(results.data[i]);
+              o.listings[i].images = o.listings[i].images.split(',');
             }
         }
         return o.listings;

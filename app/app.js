@@ -28,7 +28,9 @@ app.config([
                         return auth.get('session').then(function(results) {
                             var lid = results.savedListings.split(",");
                             for (i = 1; i < lid.length; i++) {
-                              savedListings.get('listings', lid[i]);
+                              savedListings.get('listings', lid[i]).then(function(res) {
+                                console.log(res);
+                              });
                             }
                         });
                     }]

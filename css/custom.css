@@ -241,13 +241,34 @@ ul.simple-post-list {
 /*
  * LISTING DISPLAYS
  ****/
- .listing-display-box {
- 	margin: 25px 0;
- }
 
  .image-box img {
-	 max-width: 600px;
+	 max-width: 740px;
 	 width: 100%;
+ }
+
+ .filter-box {
+ 	padding: 0 50px 0 10px;
+ }
+
+ .filter-btn {
+ 	border-radius: 0;
+ 	background-color: #f5f5f5;
+ }
+
+ .filter-btn:hover {
+ 	background-color: #cfcfcf;
+ }
+
+ .filter-btn.used {
+ 	background-color: #cfcfcf;
+ }
+
+ .keyword-filter {
+ 	background-color: #f5f5f5;
+ 	border-radius:0;
+ 	border: 1px solid #ccc;
+ 	height: 35px;
  }
 
  /*
@@ -261,20 +282,24 @@ ul.simple-post-list {
 	 display: block;
  }
 
-	.img-delete {
-		display: none;
-		position:absolute;
-		top: 15px;
-		right: 47%;
-		color: #fff;
-		font-size: 36px;
-		text-shadow: 0px 0px 1px #000;
-	}
+ .single-img .img-responsive {
+ 	width: 100%;
+ }
 
-	.img-delete:hover {
-		cursor: pointer;
-		color: #f00;
-	}
+.img-delete {
+	display: none;
+	position:absolute;
+	top: 15px;
+	right: 47%;
+	color: #fff;
+	font-size: 36px;
+	text-shadow: 0px 0px 1px #000;
+}
+
+.img-delete:hover {
+	cursor: pointer;
+	color: #f00;
+}
  /*
  * FOOTER
  ****/
@@ -309,11 +334,6 @@ ul.simple-post-list {
 	 	padding-top: 0;
 	 }
 }
-@media (max-width: 897px) {
-	.navbar .navbar-brand {
-		min-width: 70px;
-	}
-}
 @media (max-width: 767px) {
 	/* navigation */
 	.navbar-collapse {
@@ -338,6 +358,9 @@ ul.simple-post-list {
 	.jumbotron h1 {
 		font-size: 63px;
 	}
+	.filter-box {
+ 	padding: 0;
+ }
 
 }
 

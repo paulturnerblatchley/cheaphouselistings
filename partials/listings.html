@@ -11,66 +11,72 @@
 		<div class="page-header">
 			<h1>Listings</h1>
 		</div>
-		<div class="col-sm-4">
+		<div id="listing-filters" class="filter-box col-sm-4">
 			<h3>Filters</h2>
-			<div class="filter">
+			<div id="city-filter" class="row">
 				<h5>City</h5>
-				<button ng-click="listingFilters.city = listing.city" ng-repeat="listing in listings | unique: 'city'">{{listing.city}}</button>
+				<button class="btn filter-btn col-sm-6" ng-click="listingFilters.city = listing.city" ng-repeat="listing in listings | unique: 'city'" onclick="$('#city-filter button').removeClass('used');$(this).toggleClass('used');">{{listing.city}}</button>
 			</div>
-			<div class="filter">
+			<div id="price-filter" class="row">
 				<h5>Price</h5>
-				<button ng-click="listingFilters.price = listing.price" ng-repeat="listing in listings | unique: 'price'">{{listing.price}}</button>
+				<button class="btn filter-btn col-sm-4" ng-click="price.max = i * 100000" ng-repeat="i in [1,2,3,4,5,10]" onclick="$('#price-filter button').removeClass('used');$(this).toggleClass('used');">< ${{i * 100000}}</button>
 			</div>
-			<div class="filter">
+			<div id="beds-filter" class="row">
 				<h5>Beds</h5>
-				<button ng-click="listingFilters.beds = listing.beds" ng-repeat="listing in listings | unique: 'beds'">{{listing.beds}}</button>
+				<button class="btn filter-btn col-sm-2" ng-click="listingFilters.beds = $index + 1" ng-repeat="i in [1,2,3,4,5,6]" onclick="$('#beds-filter button').removeClass('used');$(this).toggleClass('used');">{{$index + 1}}</button>
 			</div>
-			<div class="filter">
+			<div id="baths-filter" class="row">
 				<h5>Baths</h5>
-				<button ng-click="listingFilters.baths = listing.baths" ng-repeat="listing in listings | unique: 'baths'">{{listing.baths}}</button>
+				<button class="btn filter-btn col-sm-2" ng-click="listingFilters.baths = $index + 1" ng-repeat="i in [1,2,3,4,5,6]" onclick="$('#baths-filter button').removeClass('used');$(this).toggleClass('used');">{{$index + 1}}</button>
 			</div>
-			<div class="filter">
+			<div id="sqft-filter" class="row">
 				<h5>Square Feet</h5>
-				<button ng-click="listingFilters.sqft = listing.sqft" ng-repeat="listing in listings | unique: 'sqft'">{{listing.sqft}}</button>
+				<button class="btn filter-btn col-sm-3" ng-click="sqft.min = i * 1000" ng-repeat="i in [.5,1,2,3]" onclick="$('#sqft-filter button').removeClass('used');$(this).toggleClass('used');">{{i * 1000}}+</button>
 			</div>
-			<div class="filter">
+			<div id="lotsize-filter" class="row">
 				<h5>Lot Size</h5>
-				<button ng-click="listingFilters.lotsize = listing.lotsize" ng-repeat="listing in listings | unique: 'lotsize'">{{listing.lotsize}}</button>
+				<button class="btn filter-btn col-sm-3" ng-click="lotsize.min = i * 1000" ng-repeat="i in [0,2,4,6,8,10,15,20]" onclick="$('#lotsize-filter button').removeClass('used');$(this).toggleClass('used');">{{i * 1000}}+</button>
 			</div>
-			<div class="filter">
-				<h5>Keywords</h5>
-				<input type="text" ng-model="listingFilters.listdesc">
+			<div id="listdesc-filter" class="row">
+				<h5>Keyword</h5>
+				<input type="text" class="col-sm-12 keyword-filter" ng-model="listingFilters.listdesc">
 			</div>
 			<br>
-			<button ng-click="listingFilters = {}">Reset</button>
+			<button class="btn btn-lg btn-primary col-sm-12" ng-click="listingFilters = {}; price.max = 10000000; sqft.min = 0; lotsize.min = 0" onclick="$('#listing-filters button').removeClass('used');">Reset</button>
 		</div>
 		<div class="col-sm-8">
-			<div id="listings" class="clearfix listing-display-box" ng-repeat="listing in listings | filter: listingFilters">
+			<div id="listings" ng-repeat="listing in filteredListings = (listings | filter:listingFilters | sqftFilter:sqft.min | lotsizeFilter:lotsize.min | priceFilter:price.max)">
+				
 				<div class="clearfix">
 					<h2><a ng-href="/#/listings/{{listing.lid}}">{{listing.address}}</a></h2>
-					<div class="image-box" ng-repeat="image in listing.images">
-						<img class="img-responsive" ng-hide="!image" ng-src="../api/v1/uploads/{{image}}" />
+					<div class="image-box">
+						<img class="img-responsive" ng-hide="!listing.images" ng-src="../api/v1/uploads/{{listing.images[0]}}" />
 					</div>
 					<h4>{{listing.city}}</h4>
 					<h5>Offered at ${{listing.price}}</h5>
-					<ul>
-						<li>Beds: {{listing.beds}}</li>
-						<li>Baths: {{listing.baths}}</li>
-						<li>Square Footage: {{listing.sqft}}</li>
-						<li>Lot Size: {{listing.lotsize}}</li>
-					</ul>
-	        		<div class="row">
-					  	<p class="col-sm-6">{{listing.listdesc}}</p>
+					<div class="row">
+						<ul class="col-sm-3">
+							<li>Beds: {{listing.beds}}</li>
+							<li>Baths: {{listing.baths}}</li>
+							<li>Square Footage: {{listing.sqft}}</li>
+							<li>Lot Size: {{listing.lotsize}}</li>
+						</ul>
+					  	<p class="col-sm-9">{{listing.listdesc}}</p>
 					  	<br>
-	        		</div>
+				  	</div>
 	        		<div class="row">
-	          			<div class="col-sm-3">
+	          			<div class="col-sm-3 col-sm-offset-3">
 	    					<button ng-click="saveListing(listing)" class="btn btn-primary">Save Listing</button>
 	          			</div>
 	        		</div>
 				</div>
 				<hr>
 			</div>
+		</div>
+		<div ng-hide="filteredListings.length">
+			<h4>There are no listings within your set filters.</h4>
+			<br>
+			<button class="btn btn-primary col-sm-2" ng-click="listingFilters = {}; sqft.min = 0; price.max = 10000000;  lotsize.min = 0" onclick="$('#listing-filters button').removeClass('used');">Reset</button>
 		</div>
 	</div>
 </div>

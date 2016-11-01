@@ -78,3 +78,51 @@ app.filter('unique', function() {
       return output;
    };
 });
+
+app.filter('priceFilter', function() {
+  return function(listings, max) {
+    var out = [];
+    for (i = 0; i < listings.length; i++){
+      priceNum = parseInt(listings[i].price.replace(',', ''), 10);
+
+      if(priceNum <= max) {
+        out.push(listings[i]);
+      }
+      
+    }
+    
+    return out;
+  }
+});
+
+app.filter('sqftFilter', function() {
+  return function(listings, min) {
+    var out = [];
+    for (i = 0; i < listings.length; i++){
+      sqftNum = parseInt(listings[i].sqft.replace(',', ''), 10);
+
+      if(sqftNum >= min) {
+        out.push(listings[i]);
+      }
+      
+    }
+    
+    return out;
+  }
+});
+
+app.filter('lotsizeFilter', function() {
+  return function(listings, min) {
+    var out = [];
+    for (i = 0; i < listings.length; i++){
+      lotsizeNum = parseInt(listings[i].lotsize.replace(',', ''), 10);
+
+      if(lotsizeNum >= min) {
+        out.push(listings[i]);
+      }
+      
+    }
+    
+    return out;
+  }
+});
