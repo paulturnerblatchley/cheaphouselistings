@@ -300,6 +300,13 @@ ul.simple-post-list {
 	cursor: pointer;
 	color: #f00;
 }
+
+.edit-listing-btn {
+	margin-left: 0;
+	margin-right: 0;
+	padding-left: 0;
+	padding-right: 0;
+}
  /*
  * FOOTER
  ****/

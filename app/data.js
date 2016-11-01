@@ -70,7 +70,7 @@ app.factory("singlelisting", ['$http',
 
                 Array.prototype.clean = function(deleteValue) {
                   for (var i = 0; i < this.length; i++) {
-                    if (this[i] == deleteValue) {         
+                    if (this[i] == deleteValue) {
                       this.splice(i, 1);
                       i--;
                     }
@@ -99,13 +99,15 @@ app.factory("savedListings", ['$http',
     o.get = function(q, lid) {
       o.listings.splice(0, o.listings.length);
       return $http.get(serviceBase + q).then(function(results) {
-
+        console.log(o.listings);
         for(i=0;i<results.data.length;i++){
             if (results.data[i].lid == lid) {
               results.data[i].price = results.data[i].price.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+              results.data[i].images = results.data[i].images.split(',');
               o.listings.push(results.data[i]);
-              o.listings[i].images = o.listings[i].images.split(',');
+
             }
+            console.log(o.listings[i]);
         }
         return o.listings;
       });

@@ -231,6 +231,22 @@ $app->post('/deleteImage', function() use ($app) {
 
 });
 
+$app->post('/deleteListing', function() use ($app){
+  $db = new DbHandler();
+  $r = json_decode($app->request->getBody());
+  $lid = $r->listing->lid;
+  $result = $db->removeRow($lid);
+  if ($result != NULL) {
+    $response["status"] = "success";
+    $response["message"] = "Listing has been removed from the database";
+    echoResponse(200, $response);
+  } else {
+    $response["status"] = "error";
+    $response["message"] = "Listing failed to delete. Please try again.";
+    echoResponse(201, $response);
+  }
+});
+
 // listing inquiry form post
 $app->post('/formSend', function() use ($app) {
     $to = "paulturnerblatchley@gmail.com";

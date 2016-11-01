@@ -115,9 +115,14 @@
             <label class="control-label" for="images">Images</label>
             <input type="file" id="file" name="file" accept="image/*" file-model="myFile" ng-model="s.images" multiple>
         </div>
-        <div class="form-group">
+        <div class="form-group col-sm-6 edit-listing-btn">
           <button id="updateListingSubmit" class="btn btn-primary" ng-click="uploadFile()">
             Update
+          </button>
+        </div>
+        <div class="form-group col-sm-6 edit-listing-btn pull-right">
+          <button id="deleteListing" class="btn btn-primary btn-danger pull-right" ng-click="deleteListing(s)">
+            Delete
           </button>
         </div>
       </form>
