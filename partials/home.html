@@ -24,20 +24,12 @@
 				<h2 class="col-sm-6">Find a property near you</h2>
 			</div>
 			<div class="search-form-box">
-<<<<<<< HEAD
 				<form ng-submit="setParams(city,priceQ,beds,baths)" ng-controller="ListingCtrl" name="home-search" class="container-fluid" role="form">
-=======
-				<form ng-submit="setParams(city,priceRange,beds,baths)" ng-controller="ListingCtrl" name="home-search" class="container-fluid" role="form">
->>>>>>> 1b011a8949c99e1091a239f55bf01ebebe404c46
 					<div class="form-group city-search col-sm-3">
 						<input class="form-control" type="text" placeholder="City" ng-model="city">
 					</div>
 					<div class="form-group price-search col-sm-3">
-<<<<<<< HEAD
 						<select class="form-control" name="cost" ng-model="priceQ" ng-options="option.value as option.name for option in priceOptions">
-=======
-						<select class="form-control" name="cost" ng-model="priceRange" ng-options="option.value as option.name for option in priceOptions">
->>>>>>> 1b011a8949c99e1091a239f55bf01ebebe404c46
 						</select>
 					</div>
 					<div class="form-group bed-search col-sm-2">
@@ -54,17 +46,32 @@
 				</form>
 			</div>
 			<div class="row col-sm-12">
-				<div class="col-sm-4 text-center lead">
-					<i class="glyphicon glyphicon-home"></i>
-					<p>Find the a large selection of house with great potential in your neightborhood.</p>
+				<div class="row home-info-section">
+					<div class="col-sm-6 nice-house-top">
+
+					</div>
+					<div class="col-sm-6">
+						<h3>Discounted Wholesale Properties</h3>
+						<p class="home-info">Once you join, you'll have access to exclusive collection of properties that are available only to members for a limited time before they are open to the general public. That means you can get a head start on some of the best deals in the area.</p>
+					</div>
 				</div>
-				<div class="col-sm-4 text-center lead">
-					<i class="glyphicon glyphicon-home"></i>
-					<p>Find the a large selection of house with great potential in your neightborhood.</p>
+				<div class="row home-info-section">
+					<div class="col-sm-6 pull-right nice-house-middle">
+
+					</div>
+					<div class="col-sm-6 pull-left">
+						<h3>Before they go public</h3>
+						<p class="home-info">Once you join, you'll have access to exclusive collection of properties that are available only to members for a limited time before they are open to the general public. That means you can get a head start on some of the best deals in the area. Exclusive foreclosures.</p>
+					</div>
 				</div>
-				<div class="col-sm-4 text-center lead">
-					<i class="glyphicon glyphicon-home"></i>
-					<p>Find the a large selection of house with great potential in your neightborhood.</p>
+				<div class="row home-info-section">
+					<div class="col-sm-6 nice-house-bottom">
+
+					</div>
+					<div class="col-sm-6">
+						<h3>Exclusive for our members</h3>
+						<p class="home-info">Once you join, you'll have access to exclusive collection of properties that are available only to members for a limited time before they are open to the general public. That means you can get a head start on some of the best deals in the area.</p>
+					</div>
 				</div>
 			</div>
 		</div>

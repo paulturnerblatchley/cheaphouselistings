@@ -224,6 +224,37 @@ ul.simple-post-list {
  	margin: 30px auto 50px;
  }
 
+.home-info-section {
+	margin: 0 auto 100px;
+}
+
+.home-info-section h3 {
+	font-size: 32px;
+}
+
+ .home-info {
+	 line-height: 2.5;
+	 font-size: 1.25em;
+ }
+
+ .nice-house-top, .nice-house-middle, .nice-house-bottom {
+	 background-image: url('../images/smaller-nice-houses.jpg');
+	 background-repeat: no-repeat;
+ }
+
+ .nice-house-top {
+     background-position: -50px -225px;
+     height: 300px;
+ }
+ .nice-house-middle {
+     background-position: -530px -560px;
+     height: 300px;
+ }
+ .nice-house-bottom {
+     background-position: -50px -575px;
+     height: 300px;
+ }
+
  /*
   * DASHBOARD
   ****/
