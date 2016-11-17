@@ -107,6 +107,11 @@ class DbHandler {
       return $this->conn->query($query) or die($this->conn->error.__LINE__);
     }
 
+    public function removeRow($lid) {
+      $query = "DELETE FROM listings WHERE lid = ".$lid." LIMIT 1";
+      return $this->conn->query($query) or die($this->conn->error.__LINE__);
+    }
+
     public function destroySession(){
         if (!isset($_SESSION)) {
         session_start();

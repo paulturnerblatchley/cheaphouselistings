@@ -29,7 +29,6 @@ app.config([
                             var lid = results.savedListings.split(",");
                             for (i = 1; i < lid.length; i++) {
                               savedListings.get('listings', lid[i]).then(function(res) {
-                                console.log(res);
                               });
                             }
                         });

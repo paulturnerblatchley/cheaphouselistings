@@ -24,12 +24,20 @@
 				<h2 class="col-sm-6">Find a property near you</h2>
 			</div>
 			<div class="search-form-box">
+<<<<<<< HEAD
 				<form ng-submit="setParams(city,priceQ,beds,baths)" ng-controller="ListingCtrl" name="home-search" class="container-fluid" role="form">
+=======
+				<form ng-submit="setParams(city,priceRange,beds,baths)" ng-controller="ListingCtrl" name="home-search" class="container-fluid" role="form">
+>>>>>>> 1b011a8949c99e1091a239f55bf01ebebe404c46
 					<div class="form-group city-search col-sm-3">
 						<input class="form-control" type="text" placeholder="City" ng-model="city">
 					</div>
 					<div class="form-group price-search col-sm-3">
+<<<<<<< HEAD
 						<select class="form-control" name="cost" ng-model="priceQ" ng-options="option.value as option.name for option in priceOptions">
+=======
+						<select class="form-control" name="cost" ng-model="priceRange" ng-options="option.value as option.name for option in priceOptions">
+>>>>>>> 1b011a8949c99e1091a239f55bf01ebebe404c46
 						</select>
 					</div>
 					<div class="form-group bed-search col-sm-2">

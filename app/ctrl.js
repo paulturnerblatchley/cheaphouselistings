@@ -106,18 +106,33 @@ app.controller('ListingCtrl', function($scope, $route, $location, $http, $localS
     };
 
     $scope.deleteFile = function(img) {
-      auth.post('deleteImage', {
-        img:img
-      }).then(function(res){
-          auth.toast(res);
-          if (res.status == "success") {
-            var index = $scope.s.images.indexOf(img);
-            if (index > -1) {
-              $scope.s.images.splice(index, 1);
+      var ok = confirm("Are you sure you want to delete this image?");
+      if (ok) {
+        auth.post('deleteImage', {
+          img:img
+        }).then(function(res){
+            auth.toast(res);
+            if (res.status == "success") {
+              var index = $scope.s.images.indexOf(img);
+              if (index > -1) {
+                $scope.s.images.splice(index, 1);
+              }
             }
-          }
-          $route.reload();
-      });
+            $route.reload();
+        });
+      }  
+    };
+
+    $scope.deleteListing = function(listing) {
+        var ok = confirm("Are you sure you want to delete this listing?");
+        if (ok) {
+          auth.post('deleteListing', {
+            listing: listing
+          }).then(function(res){
+              auth.toast(res);
+              $location.path('listings/');
+          });
+        }
     };
 
     $scope.s = singlelisting.listing;
@@ -155,7 +170,11 @@ app.controller('ListingCtrl', function($scope, $route, $location, $http, $localS
         { name: '4 Baths', value: '4' },
         { name: '5+ Baths', value: '5' }
     ];
+<<<<<<< HEAD
     $scope.priceQ = $scope.priceOptions[0].value;
+=======
+    $scope.priceRange = $scope.priceOptions[0].value;
+>>>>>>> 1b011a8949c99e1091a239f55bf01ebebe404c46
     $scope.beds = $scope.bedOptions[0].value;
     $scope.baths = $scope.bathOptions[0].value;
     $scope.setParams = function(city,priceQ,beds,baths) {
@@ -196,7 +215,6 @@ app.controller('ListingCtrl', function($scope, $route, $location, $http, $localS
       for (i=0; i<f.length; i++) {
         s.images += ", " + f[i].name;
       }
-      console.log(s);
       auth.post('editListing', {
         listing: s
       }).then( function(results) {
