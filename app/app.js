@@ -75,12 +75,12 @@ app.config([
               resolve: {
                 getParams: function( $localStorage ) {
                   $city = $localStorage.city;
-                  $price = $localStorage.price;
+                  $priceQ = $localStorage.priceQ;
                   $beds = $localStorage.beds;
                   $baths = $localStorage.baths;
                 },
                 getResults: ['searchListings', function(searchListings) {
-                    return searchListings.get('listings', $city, $price, $beds, $baths).then(function(res){
+                    return searchListings.get('listings', $city, $priceQ, $beds, $baths).then(function(res){
                         return res;
                     });
                 }]

@@ -1,13 +1,13 @@
-<footer>
+<footer ng-controller="ListingCtrl">
   <div class="container">
     <div class="container footer-top row">
       <div class="col-sm-6">
         <h3>Cities</h3>
-        <ul class="nav">
-          <li>Fontana</li>
-          <li>Colton</li>
-          <li>San Bernardino</li>
-        </ul>
+        <div class="nav" >
+          <div ng-repeat="listing in listings">
+            <p>{{listing.city}}</p>
+          </div>
+        </div>
       </div>
       <div class="col-sm-6">
 

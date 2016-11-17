@@ -25,7 +25,7 @@
       <div ng-view id="ng-view" autoscroll="true" class="" ng-controller="ViewCtrl">
 
       </div>
-    <ng-include ng-show="isReady()" src="'partials/footer.html'" ng-controller="ViewCtrl"></ng-include>
+    <ng-include src="'partials/footer.html'" ng-show="isReady()" ng-controller="ViewCtrl"></ng-include>
   </body>
   <toaster-container toaster-options="{'time-out': 3000}"></toaster-container>
   <!-- Libs -->

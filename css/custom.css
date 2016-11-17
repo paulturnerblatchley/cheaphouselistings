@@ -18,7 +18,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 h1 {font-size:3.125em;font-weight:300; letter-spacing: 2px;}
-h2 {font-size:2.618em;font-weight:300; letter-spacing: 1px;}
+h2 {font-size:2.618em;font-weight:300;}
 h3 {font-size:1.931em;font-weight:700;}
 h4 {font-size:1.618em;font-weight:700;}
 h5 {font-size:1.194em;font-weight:300; text-transform: uppercase; letter-spacing: 1px;}
@@ -31,7 +31,7 @@ ul{
 	list-style: none;
 }
 a{
-	color: #333;
+	color: #3276b1;
 }
 a:hover{
 	cursor: pointer;
@@ -69,6 +69,9 @@ ul.simple-post-list {
 }
 .breadcrumb{
 	margin-bottom: 0;
+}
+.breadcrumb a {
+	color: #333;
 }
 .cart-btn{
 	border-radius:0;
@@ -179,8 +182,21 @@ ul.simple-post-list {
 
  .jumbotron .container-fluid {
  	width: 80%;
- 	padding-top: 48px;
+ 	padding-top: 0;
  }
+ .jumbotron h1 {
+ 	font-size: 72px;
+ }
+
+.jumbotron p {
+	line-height: 1.8;
+}
+.jumbotron .row {
+	margin: 5px auto;
+}
+.jumbotron .btn {
+	line-height: 2;
+}
 
  .jumbotron .btn-secondary{
 	 background: linear-gradient(to left, rgba(50,118,177, 0.1), rgba(255, 255, 255, 0.2));
@@ -198,7 +214,7 @@ ul.simple-post-list {
  	z-index: 1;
  	background-color: #fff;
  	max-width: 1080px;
- 	height: 800px;
+ 	min-height: 800px;
  	margin: 0 auto;
  	padding: 20px 0 50px;
  }
@@ -328,12 +344,28 @@ ul.simple-post-list {
 /*
 * MEDIA Qs
 ****/
-@media (max-width: 1080px) {
+@media (max-width: 1180px) {
 	.jumbotron .container-fluid {
 	 	width: 100%;
 	 	padding-top: 0;
 	 }
 }
+
+@media (max-width: 960px) {
+	.jumbotron {
+		padding: 30px 0;
+	}
+	.jumbotron h1 {
+		font-size: 63px;
+	}
+}
+
+@media (max-width: 810px) {
+	.jumbotron h1 {
+		font-size: 48px;
+	}
+}
+
 @media (max-width: 767px) {
 	/* navigation */
 	.navbar-collapse {
@@ -355,8 +387,13 @@ ul.simple-post-list {
 	.mobile-brand {
 		display: block!important;
 	}
-	.jumbotron h1 {
-		font-size: 63px;
+	.jumbotron {
+		padding: 0 0 30px;
+	}
+	.jumbotron .btn {
+		width: 400px;
+		max-width: 100%;
+		margin: 5px auto;
 	}
 	.filter-box {
  	padding: 0;
@@ -364,20 +401,29 @@ ul.simple-post-list {
 
 }
 
-@media (max-width: 600px) {
-	.jumbotron {
-		padding: 30px 0;
+@media (max-width: 675px) {
+	.jumbotron p {
+		font-size: 18px;
 	}
+}
+
+@media (max-width: 540px) {
 	.jumbotron h1 {
-		font-size: 4em;
+		font-size: 36px;
 	}
 }
 
 @media (max-width: 450px) {
 	.jumbotron {
-		padding: 15px 0;
+		padding: 0;
 	}
 	.jumbotron p {
 		font-size: 16px;
+	}
+}
+
+@media (max-width: 380px) {
+	.jumbotron h1 {
+		font-size: 28px;
 	}
 }

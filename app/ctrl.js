@@ -155,17 +155,17 @@ app.controller('ListingCtrl', function($scope, $route, $location, $http, $localS
         { name: '4 Baths', value: '4' },
         { name: '5+ Baths', value: '5' }
     ];
-    $scope.price = $scope.priceOptions[0].value;
+    $scope.priceQ = $scope.priceOptions[0].value;
     $scope.beds = $scope.bedOptions[0].value;
     $scope.baths = $scope.bathOptions[0].value;
-    $scope.setParams = function(city,price,beds,baths) {
+    $scope.setParams = function(city,priceQ,beds,baths) {
         delete $scope.$storage.city;
-        delete $scope.$storage.price;
+        delete $scope.$storage.priceQ;
         delete $scope.$storage.beds;
         delete $scope.$storage.baths;
         var citySearch = city.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
         $scope.$storage.city = citySearch;
-        $scope.$storage.price = price;
+        $scope.$storage.priceQ = priceQ;
         $scope.$storage.beds = beds;
         $scope.$storage.baths = baths;
         if ($location.url() != '/listings/search-results') {
