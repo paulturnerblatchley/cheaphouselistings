@@ -120,7 +120,7 @@ app.controller('ListingCtrl', function($scope, $route, $location, $http, $localS
             }
             $route.reload();
         });
-      }  
+      }
     };
 
     $scope.deleteListing = function(listing) {
@@ -170,11 +170,7 @@ app.controller('ListingCtrl', function($scope, $route, $location, $http, $localS
         { name: '4 Baths', value: '4' },
         { name: '5+ Baths', value: '5' }
     ];
-<<<<<<< HEAD
     $scope.priceQ = $scope.priceOptions[0].value;
-=======
-    $scope.priceRange = $scope.priceOptions[0].value;
->>>>>>> 1b011a8949c99e1091a239f55bf01ebebe404c46
     $scope.beds = $scope.bedOptions[0].value;
     $scope.baths = $scope.bathOptions[0].value;
     $scope.setParams = function(city,priceQ,beds,baths) {
