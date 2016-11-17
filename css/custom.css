@@ -87,6 +87,10 @@ ul.simple-post-list {
 	margin-right: -15px;
 }
 
+.btn {
+	transition: background-color .3s ease-in-out;
+}
+
 /*
  * NAVBAR
  ****/
@@ -225,7 +229,7 @@ ul.simple-post-list {
  }
 
 .home-info-section {
-	margin: 0 auto 100px;
+	margin: 0 auto 75px;
 }
 
 .home-info-section h3 {
@@ -368,16 +372,20 @@ ul.simple-post-list {
 
  .footer-top {
 	 padding-top: 50px;
-	 height: 250px;
+	 height: auto;
+ }
+
+ .footer-top hr {
+	 width: 25px;
+	 margin-left: 0;
  }
 
  .footer-bottom {
 	 height: 50px;
  }
-
- footer ul.nav {
-	 background-color: transparent;
- }
+.footer-nav li{
+	padding: 1px;
+}
 
 /*
 * MEDIA Qs

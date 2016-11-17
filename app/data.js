@@ -99,7 +99,6 @@ app.factory("savedListings", ['$http',
     o.get = function(q, lid) {
       o.listings.splice(0, o.listings.length);
       return $http.get(serviceBase + q).then(function(results) {
-        console.log(o.listings);
         for(i=0;i<results.data.length;i++){
             if (results.data[i].lid == lid) {
               results.data[i].price = results.data[i].price.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -107,7 +106,6 @@ app.factory("savedListings", ['$http',
               o.listings.push(results.data[i]);
 
             }
-            console.log(o.listings[i]);
         }
         return o.listings;
       });

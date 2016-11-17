@@ -25,7 +25,7 @@
               </div>
             </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-4" ng-controller="authCtrl">
             <div id="login-box" class="login-box visible widget-box no-border">
                 <div class="widget-body">
                     <div class="widget-main">
@@ -34,7 +34,7 @@
                         <li>Email: {{email}}</li>
                         <li>Phone: {{phone}}</li>
                     </ul>
-                    <p><a ng-click="logout();">Logout</a></p>
+                    <p><a ng-click="logout()">Logout</a></p>
                     </div>
                 </div>
             </div>
