@@ -12,7 +12,25 @@
 			<h1>Listings</h1>
 		</div>
 		<div ng-hide="isLoggedIn()" ng-controller="authCtrl">
-			<h3><a href="/#/login">Log In</a> or <a href="/#/signup">Sign Up</a> to view all listings</h3>
+			<h2><a href="/#/login">Log In</a> or <a href="/#/signup">Sign Up</a> to view all listings</h2>
+      <br>
+      <div class="featured-listing" ng-controller="ListingCtrl">
+        <h3>Featured Listing</h3>
+        <div class="col-sm-6">
+          <img class="img-responsive" ng-src="../api/v1/uploads/{{listings[0].images[0]}}" />
+        </div>
+        <div class="col-sm-6">
+          <h4>{{listings[0].address}} in {{listings[0].city}}</h4>
+          <h5>Offered at ${{listings[0].price}}</h5>
+          <p>{{listings[0].listdesc}}</p>
+          <ul>
+            <li>Beds: {{listings[0].beds}}</li>
+            <li>Baths: {{listings[0].baths}}</li>
+            <li>Square Footage: {{listings[0].sqft}}</li>
+            <li>Lot Size: {{listings[0].lotsize}}</li>
+          </ul>
+        </div>
+      </div>
 		</div>
 		<div ng-show="isLoggedIn()" ng-controller="authCtrl">
 			<div id="listing-filters" class="filter-box col-sm-4" ng-controller="ListingCtrl">
@@ -50,7 +68,7 @@
 			</div>
 			<div class="col-sm-8">
 				<div id="listings" ng-repeat="listing in filteredListings = (listings | filter:listingFilters | sqftFilter:sqft.min | lotsizeFilter:lotsize.min | priceFilter:price.max)">
-					
+
 					<div class="clearfix">
 						<a ng-href="/#/listings/{{listing.lid}}">
 							<h2>{{listing.address}}</h2>

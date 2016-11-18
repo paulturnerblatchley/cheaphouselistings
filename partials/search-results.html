@@ -14,30 +14,52 @@
 			<div class="page-header">
 				<h1>Results</h1>
 			</div>
-			<div ng-show="noResults()">
-				<p>There were no results within your search criteria.</p>
+			<div ng-hide="isLoggedIn()" ng-controller="authCtrl">
+				<h2><a href="/#/login">Log In</a> or <a href="/#/signup">Sign Up</a> to view all results.</h2>
+	      <br>
+	      <div ng-hide="noResults()" class="featured-listing" ng-controller="ListingCtrl">
+	        <h3>Featured Result</h3>
+	        <div class="col-sm-6">
+	          <img class="img-responsive" ng-src="../api/v1/uploads/{{searchRes[0].images[0]}}" />
+	        </div>
+	        <div class="col-sm-6">
+	          <h4>{{searchRes[0].address}} in {{searchRes[0].city}}</h4>
+	          <h5>Offered at ${{searchRes[0].price}}</h5>
+	          <p>{{searchRes[0].listdesc}}</p>
+	          <ul>
+	            <li>Beds: {{searchRes[0].beds}}</li>
+	            <li>Baths: {{searchRes[0].baths}}</li>
+	            <li>Square Footage: {{searchRes[0].sqft}}</li>
+	            <li>Lot Size: {{searchRes[0].lotsize}}</li>
+	          </ul>
+	        </div>
+	      </div>
 			</div>
-			<div ng-hide="noResults()">
-				<div class="clearfix listing-display-box" ng-repeat="listing in searchRes">
-					<div class="clearfix">
-						<h2><a ng-href="/#/listings/{{listing.lid}}">{{listing.address}}</a></h2>
-						<div class="image-box">
-							<img class="img-responsive" ng-src="../api/v1/uploads/{{listing.images[0]}}" />
-						</div>
-
-						<h4>{{listing.city}}</h4>
-						<h5>Offered at ${{listing.price}}</h5>
-						<ul>
-							<li>Beds: {{listing.beds}}</li>
-							<li>Baths: {{listing.baths}}</li>
-							<li>Square Footage: {{listing.sqft}}</li>
-							<li>Lot Size: {{listing.lotsize}}</li>
-						</ul>
-						<p class="col-sm-6">{{listing.listdesc}}</p>
-					</div>
-					<hr>
+			<div ng-show="isLoggedIn()" ng-controller="authCtrl">
+				<div ng-show="noResults()" ng-controller="ListingCtrl">
+					<p>There were no results within your search criteria.</p>
 				</div>
+				<div ng-hide="noResults()">
+					<div class="clearfix listing-display-box" ng-repeat="listing in searchRes">
+						<div class="clearfix">
+							<h2><a ng-href="/#/listings/{{listing.lid}}">{{listing.address}}</a></h2>
+							<div class="image-box">
+								<img class="img-responsive" ng-src="../api/v1/uploads/{{listing.images[0]}}" />
+							</div>
 
+							<h4>{{listing.city}}</h4>
+							<h5>Offered at ${{listing.price}}</h5>
+							<ul>
+								<li>Beds: {{listing.beds}}</li>
+								<li>Baths: {{listing.baths}}</li>
+								<li>Square Footage: {{listing.sqft}}</li>
+								<li>Lot Size: {{listing.lotsize}}</li>
+							</ul>
+							<p class="col-sm-6">{{listing.listdesc}}</p>
+						</div>
+						<hr>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
