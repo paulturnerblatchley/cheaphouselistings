@@ -219,7 +219,8 @@ app.controller('ListingCtrl', function($scope, $route, $location, $http, $localS
       });
     };
 
-    $scope.listingFilters = { };
+    $scope.listingFilters = {};
+    console.log($scope.listingFilters.city);
     $scope.price = {max:100000000};
     $scope.sqft = {min:0};
     $scope.lotsize = {min:0};
