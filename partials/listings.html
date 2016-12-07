@@ -23,7 +23,7 @@
           <h4>{{listings[0].address}} in {{listings[0].city}}</h4>
           <h5>Offered at ${{listings[0].price}}</h5>
           <p>{{listings[0].listdesc}}</p>
-          <ul>
+          <ul class="list-details">
             <li>Beds: {{listings[0].beds}}</li>
             <li>Baths: {{listings[0].baths}}</li>
             <li>Square Footage: {{listings[0].sqft}}</li>
@@ -79,7 +79,7 @@
 						<h4>{{listing.city}}</h4>
 						<h5>Offered at ${{listing.price}}</h5>
 						<div class="row">
-							<ul class="col-sm-3">
+							<ul class="col-sm-3 list-details">
 								<li>Beds: {{listing.beds}}</li>
 								<li>Baths: {{listing.baths}}</li>
 								<li>Square Footage: {{listing.sqft}}</li>

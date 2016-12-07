@@ -338,6 +338,12 @@ ul.simple-post-list {
  	height: 35px;
  }
 
+ .list-details {
+ 	line-height: 2.5;
+ 	letter-spacing: 1px;
+ 	font-weight: 700;
+ }
+
  /*
  * SINGLE LISTINGS
  ****/
