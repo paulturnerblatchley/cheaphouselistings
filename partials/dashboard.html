@@ -16,7 +16,7 @@
             </div>
             <div class="row" ng-repeat="listing in saved">
               <div class="col-sm-3">
-                <img ng-repeat="image in listing.images | limitTo: 1" class="img-thumbnail" ng-src="../api/v1/uploads/{{image}}">
+                <img class="img-thumbnail" ng-src="../api/v1/uploads/{{listing.images[0]}}">
               </div>
               <div class="col-sm-6">
                 <h4><a ng-href="/#/listings/{{listing.lid}}">{{listing.address}}</a></h4>

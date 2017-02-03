@@ -1,5 +1,15 @@
 var serviceBase = 'api/v1/';
 
+Array.prototype.clean = function(deleteValue) {
+  for (var i = 0; i < this.length; i++) {
+    if (this[i] == deleteValue) {
+      this.splice(i, 1);
+      i--;
+    }
+  }
+  return this;
+};
+
 app.factory("auth", ['$http', 'toaster',
     function ($http, toaster) { // This service connects to our REST API
 
@@ -45,7 +55,7 @@ app.factory("listings", ['$http', 'auth', 'toaster',
             o.listings = results.data;
 
             for(i=0; i<results.data.length;i++) {
-              o.listings[i].images = results.data[i].images.split(', ');
+              o.listings[i].images = results.data[i].images.split(', ').clean("");
               o.listings[i].price = o.listings[i].price.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
             }
             return results.data;
@@ -67,16 +77,6 @@ app.factory("singlelisting", ['$http',
           for(i=0;i<results.data.length;i++){
               if (results.data[i].lid == lid) {
                 o.listing = results.data[i];
-
-                Array.prototype.clean = function(deleteValue) {
-                  for (var i = 0; i < this.length; i++) {
-                    if (this[i] == deleteValue) {
-                      this.splice(i, 1);
-                      i--;
-                    }
-                  }
-                  return this;
-                };
 
                 o.listing.images = results.data[i].images.split(', ').clean("");
                 o.listing.price = o.listing.price.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -102,7 +102,7 @@ app.factory("savedListings", ['$http',
         for(i=0;i<results.data.length;i++){
             if (results.data[i].lid == lid) {
               results.data[i].price = results.data[i].price.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-              results.data[i].images = results.data[i].images.split(',');
+              results.data[i].images = results.data[i].images.split(', ').clean("");
               o.listings.push(results.data[i]);
 
             }
