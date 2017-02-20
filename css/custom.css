@@ -191,6 +191,7 @@ ul.simple-post-list {
  }
  .jumbotron h1 {
  	font-size: 72px;
+ 	text-transform: uppercase;
  }
 
 .jumbotron p {
@@ -201,6 +202,7 @@ ul.simple-post-list {
 }
 .jumbotron .btn {
 	line-height: 2;
+	width: 35%;
 }
 
  .jumbotron .btn-secondary, .final-cta .btn-secondary{

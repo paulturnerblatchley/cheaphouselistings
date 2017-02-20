@@ -46,36 +46,6 @@
   			<p>{{s.listdesc}}</p>
   		</div>
     </div>
-    <div ng-hide="isAdmin()" class="contact-box col-sm-offset-1 col-sm-4" ng-controller="authCtrl">
-      <h4 class="form-heading">Property Inquiry</h4>
-      <form name="listingInquiry" class="form-horizontal" ng-submit="submitInquiry(formData)" ng-controller="FormCtrl">
-        <div class="form-group">
-          <label class="control-label">Name:</label>
-          <input class="form-control" type="text" ng-model="formData.name" required>
-        </div>
-        <div class="form-group">
-          <label class="control-label">Email:</label>
-          <input class="form-control" type="email" ng-model="formData.email" required>
-        </div>
-        <div class="form-group">
-          <label class="control-label">Phone:</label>
-          <input class="form-control" type="tel" ng-model="formData.phone" required>
-        </div>
-        <div class="form-group">
-          <label class="control-label">Listing:</label>
-          <input class="form-control" type="text" ng-model="formData.listing" required>
-        </div>
-        <div class="form-group">
-          <label class="control-label">Message:</label>
-          <textarea cols="50" rows="4" class="form-control" type="text" ng-model="formData.message" required></textarea>
-        </div>
-        <div class="form-group">
-          <button id="contactFormSubmit" class="btn btn-primary" data-ng-disabled="listingInquiry.$invalid">
-            Submit
-          </button>
-        </div>
-      </form>
-    </div>
     <div ng-show="isAdmin()" class="contact-box col-sm-offset-1 col-sm-4" ng-controller="authCtrl">
       <h4 class="form-heading">Edit Listing</h4>
       <form name="listingUpdate" class="form-horizontal" ng-submit="updateListing(s)" ng-controller="ListingCtrl">

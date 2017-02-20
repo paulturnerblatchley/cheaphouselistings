@@ -6,7 +6,7 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand navbar-collapse collapse" aria-expanded="false" rel="home" title="Home" href="/">Cheap House Listings</a>
+    <a class="navbar-brand navbar-collapse collapse" aria-expanded="false" rel="home" title="Home" href="/">Structured Capital</a>
     <div class="search-bar pull-left">
       <form ng-submit="setParams(city)" ng-controller="ListingCtrl">
         <input type="text" ng-model="city" placeholder="Search by City..." />
@@ -20,7 +20,6 @@
       <li ng-show="isLoggedIn()"><a title="dashboard" href="/#/dashboard">{{name}}</a></li>
       <li> <a title="listings" href="/#/listings">Listings</a></li>
       <li ng-show="isAdmin()"><a title="new-listing" href="/#/listings/new-listing">Create A Listing</a></li>
-      <li ng-hide="isLoggedIn()"><a title="Sign Up" href="/#/signup">Sign Up</a></li>
       <li ng-hide="isLoggedIn()"><a title="Login" href="/#/login">Log In</a></li>
       <li ng-show="isLoggedIn()"><a title="Logout" ng-click="logout()">Log Out</a></li>
     </ul>

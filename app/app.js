@@ -14,11 +14,6 @@ app.config([
                 templateUrl: 'partials/login.html',
                 controller: 'logoutCtrl'
             })
-            .when('/signup', {
-                title: 'Signup',
-                templateUrl: 'partials/signup.html',
-                controller: 'authCtrl'
-            })
             .when('/dashboard', {
                 title: 'Dashboard',
                 templateUrl: 'partials/dashboard.html',

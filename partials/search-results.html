@@ -15,12 +15,12 @@
 				<h1>Results</h1>
 			</div>
 			<div ng-hide="isLoggedIn()" ng-controller="authCtrl">
-				<h2><a href="/#/login">Log In</a> or <a href="/#/signup">Sign Up</a> to view all results.</h2>
+				<h2><a href="/#/login">Log In</a> to view all results.</h2>
 	      <br>
 	      <div ng-hide="noResults()" class="featured-listing" ng-controller="ListingCtrl">
 	        <h3>Featured Result</h3>
 	        <div class="col-sm-6">
-	          <img class="img-responsive" ng-src="../api/v1/uploads/{{searchRes[0].images[0]}}" />
+	          <img class="img-responsive" ng-repeat="image in searchRes[0].images | limitTo:1" ng-if="image != ''" ng-src="../api/v1/uploads/{{image}}"/>
 	        </div>
 	        <div class="col-sm-6">
 	          <h4>{{searchRes[0].address}} in {{searchRes[0].city}}</h4>
@@ -44,7 +44,8 @@
 						<div class="clearfix">
 							<h2><a ng-href="/#/listings/{{listing.lid}}">{{listing.address}}</a></h2>
 							<div class="image-box">
-								<img class="img-responsive" ng-src="../api/v1/uploads/{{listing.images[0]}}" />
+								<img class="img-responsive" ng-repeat="image in listing.images | limitTo:1" 
+								ng-if="image != ''" ng-src="../api/v1/uploads/{{image}}" />
 							</div>
 
 							<h4>{{listing.city}}</h4>

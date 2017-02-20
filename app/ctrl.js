@@ -26,17 +26,6 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
             }
         });
     };
-    $scope.signup = {email:'',password:'',name:'',phone:''};
-    $scope.signUp = function (customer) {
-        auth.post('signUp', {
-            customer: customer
-        }).then(function (results) {
-            auth.toast(results);
-            if (results.status == "success") {
-                $location.path('dashboard');
-            }
-        });
-    };
     $scope.isLoggedIn = function() {
         if ($rootScope.authenticated) {
             return true;
@@ -97,11 +86,14 @@ app.controller('ListingCtrl', function($scope, $route, $location, $http, $localS
     };
 
     $scope.uploadFile = function() {
-        var files = [];
-        for (i=0;i<$scope.myFile.length;i++) {
-            files.push($scope.myFile[i]);
-            Data('uploader').postImage(files[i], function(response) {
-            });
+        console.log($scope.myFile.length);
+        if ($scope.myFile.length != 0) {
+            var files = [];
+            for (i=0;i<$scope.myFile.length;i++) {
+                files.push($scope.myFile[i]);
+                Data('uploader').postImage(files[i], function(response) {
+                });
+            }
         }
     };
 
