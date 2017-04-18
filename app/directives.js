@@ -42,7 +42,6 @@ app.directive('fileModel', ['$parse', function ($parse) {
             angular.forEach(element[0].files, function (item) {
                 var value = {
                     lastModified: item.lastModified,
-                    lastModifiedDate: item.lastModifiedDate,
                     name: item.name,
                     size: item.size,
                     type: item.type,
@@ -62,6 +61,7 @@ app.directive('fileModel', ['$parse', function ($parse) {
     };
  }]);
 
+
 app.filter('unique', function() {
    return function(collection, keyname) {
       var output = [], 
@@ -79,30 +79,42 @@ app.filter('unique', function() {
    };
 });
 
-app.filter('priceFilter', function() {
-  return function(listings, max) {
+/*app.filter('priceFilter', function() {
+  return function(properties, max) {
     var out = [];
-    for (i = 0; i < listings.length; i++){
-      priceNum = parseInt(listings[i].price.replace(',', ''), 10);
+    for (i = 0; i < properties.length; i++){
+      priceNum = parseInt(properties[i].price.replace(',', ''), 10);
 
       if(priceNum <= max) {
-        out.push(listings[i]);
+        out.push(properties[i]);
       }
       
     }
     
     return out;
   }
+});*/
+
+app.filter('pidFilter', function() {
+  return function(properties, pid) {
+    var out = [];
+    for (i = 0; i < properties.length; i++){
+      if(properties[i].pid == pid) {
+        out.push(properties[i]);
+      }
+    }
+    return out;
+  }
 });
 
 app.filter('sqftFilter', function() {
-  return function(listings, min) {
+  return function(properties, min) {
     var out = [];
-    for (i = 0; i < listings.length; i++){
-      sqftNum = parseInt(listings[i].sqft.replace(',', ''), 10);
+    for (i = 0; i < properties.length; i++){
+      sqftNum = parseInt(properties[i].sqft.replace(',', ''), 10);
 
       if(sqftNum >= min) {
-        out.push(listings[i]);
+        out.push(properties[i]);
       }
       
     }
@@ -112,13 +124,13 @@ app.filter('sqftFilter', function() {
 });
 
 app.filter('lotsizeFilter', function() {
-  return function(listings, min) {
+  return function(properties, min) {
     var out = [];
-    for (i = 0; i < listings.length; i++){
-      lotsizeNum = parseInt(listings[i].lotsize.replace(',', ''), 10);
+    for (i = 0; i < properties.length; i++){
+      lotsizeNum = parseInt(properties[i].lotsize.replace(',', ''), 10);
 
       if(lotsizeNum >= min) {
-        out.push(listings[i]);
+        out.push(properties[i]);
       }
       
     }

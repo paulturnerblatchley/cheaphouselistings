@@ -7,34 +7,46 @@
         <li class="active">Dashboard</li>
     </ul>
 </div>
+<div id="form-loading" ng-hide="isLoggedIn()">
+    </div>
 <div class="page-content">
-    <div class="row">
-        <div class="saved-listings col-sm-7 col-sm-offset-1" ng-controller="ListingCtrl">
-            <h3 class="page-header">Saved Listings</h3>
-            <div ng-hide="hasSavedListings()">
-              <h5>You have no saved listings. <a href="/#/listings">View all listings.</a></h5>
+    <div class="container">
+        <div class="row view-settings">
+            <div class="col-sm-9">
             </div>
-            <div class="row" ng-repeat="listing in saved">
-              <div class="col-sm-3">
-                <img class="img-thumbnail" ng-src="../api/v1/uploads/{{listing.images[0]}}">
-              </div>
-              <div class="col-sm-6">
-                <h4><a ng-href="/#/listings/{{listing.lid}}">{{listing.address}}</a></h4>
-                <p>${{listing.price}}</p>
-                <p>Beds: {{listing.beds}}  |  Baths: {{listing.baths}}</p>
-              </div>
+            <div class="col-sm-3" ng-controller="authCtrl">
+                <div id="user-box" class="user-box">
+                    <div>
+                        <div>
+                        <h4>{{name}}</h4>
+                        <ul>
+                            <li>Email: {{email}}</li>
+                            <li>Phone: {{phone}}</li>
+                        </ul>
+                        <p ng-show="isAdmin()"><a href="#/add-user"><button class="btn btn-primary">Add a New User</button></a></p>
+                        <p><button class="btn btn-secondary" ng-click="logout()">Logout</button></p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-sm-4" ng-controller="authCtrl">
-            <div id="login-box" class="login-box visible widget-box no-border">
-                <div class="widget-body">
-                    <div class="widget-main">
-                    <h4>{{name}}</h4>
-                    <ul>
-                        <li>Email: {{email}}</li>
-                        <li>Phone: {{phone}}</li>
-                    </ul>
-                    <p><a ng-click="logout()">Logout</a></p>
+        <div class="row">
+            <div class="col-sm-9">
+            </div>
+            <div class="settings col-sm-3" ng-controller="PropertyCtrl">
+                <h3 class="page-header">Settings</h3>
+                <div class="row" ng-repeat="column in columns">
+                    <div class="col-xs-9">
+                        <h5>{{column.displayName}}</h5>
+                    </div>
+                    <div class="col-xs-3">
+                        <div class="onoffswitch pull-right">
+                            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch{{$index}}" checked ng-model="column.visible" ng-change="hideColumn(column,uid)" >
+                            <label class="onoffswitch-label" for="myonoffswitch{{$index}}">
+                                <span class="onoffswitch-inner"></span>
+                                <span class="onoffswitch-switch"></span>
+                            </label>
+                        </div>
                     </div>
                 </div>
             </div>

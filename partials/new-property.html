@@ -1,0 +1,265 @@
+<div class="breadcrumbs" id="breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <a href="#">Properties</a>
+        </li>
+        <li class="active">Create A Property</li>
+    </ul>
+</div>
+<div id="form-loading">
+</div>
+<div class="page-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-7 col-sm-offset-1">
+                <div id="login-box" class="visible widget-box no-border">
+                    <div class="widget-body">
+                        <div class="widget-main">
+                            <h4>
+                                Create a New Property
+                            </h4>
+                            <br/>
+                            <form name="newPropertyForm" class="form-horizontal" role="form" ng-submit="newProperty(newproperty)" latlng="obj">
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" for="status">Status</label>
+                                    <div class="col-sm-8">
+                                        <select class="form-control" name="status" ng-model="newproperty.status"/>
+                                            <option value="Active">Active</option>
+                                            <option value="Hold">Hold</option>
+                                            <option value="Closed">Closed</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" for="phase">Phase</label>
+                                    <div class="col-sm-8">
+                                        <select class="form-control" name="phase" ng-model="newproperty.phase"/>
+                                            <option value="Purchase">Purchase</option>
+                                            <option value="Relocation">Relocation</option>
+                                            <option value="Eviction">Eviction</option>
+                                            <option value="Plan Check">Plan Check</option>
+                                            <option value="Rehab">Rehab</option>
+                                            <option value="Listed">Listed</option>
+                                            <option value="Hold">Hold</option>
+                                            <option value="Escrow">Escrow</option>
+                                            <option value="Sold">Sold</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" for="property_type">Property Type</label>
+                                    <div class="col-sm-8">
+                                        <select class="form-control" name="property_type" ng-model="newproperty.property_type"/>
+                                            <option value="SFR">SFR</option>
+                                            <option value="Condo">Condo</option>
+                                            <option value="Duplex">Duplex</option>
+                                            <option value="Triplex">Triplex</option>
+                                            <option value="Fourplex">Fourplex</option>
+                                            <option value="MFR">MFR</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" for="address">Address</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" placeholder="Address" name="address" ng-model="newproperty.address" focus required/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" for="city">City</label>
+                                    <div class="col-sm-8">
+                                      <input type="text" class="form-control" name="city" placeholder="City" ng-model="newproperty.city" required/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" for="zip">ZIP</label>
+                                    <div class="col-sm-8">
+                                      <input type="text" class="form-control" name="zip" placeholder="ZIP" ng-model="newproperty.zip" required/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" for="county">County</label>
+                                    <div class="col-sm-8">
+                                        <select class="form-control" name="county" ng-model="newproperty.county"/>
+                                            <option value="SB">SB</option>
+                                            <option value="RIV">RIV</option>
+                                            <option value="LA">LA</option>
+                                            <option value="OC">OC</option>
+                                            <option value="SD">SD</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" for="year_built">Year Built</label>
+                                    <div class="col-sm-8">
+                                      <input type="text" class="form-control" name="year_built" placeholder="Year Built" ng-model="newproperty.year_built"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" for="sqft">Square Footage</label>
+                                    <div class="col-sm-8">
+                                      <input type="text" class="form-control" name="sqft" placeholder="Sq Ft" ng-model="newproperty.sqft"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" for="lotsize">Lot Size</label>
+                                    <div class="col-sm-8">
+                                      <input type="text" class="form-control" placeholder="Lot Size" name="lotsize" ng-model="newproperty.lotsize"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" for="beds">Bedrooms</label>
+                                    <div class="col-sm-8">
+                                      <input type="text" class="form-control" placeholder="Beds" name="beds" ng-model="newproperty.beds" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" for="baths">Bathrooms</label>
+                                    <div class="col-sm-8">
+                                      <input type="text" class="form-control" placeholder="Baths" name="baths" ng-model="newproperty.baths"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" for="listdesc">Description</label>
+                                    <div class="col-sm-8">
+                                      <textarea rows="4" cols="50" class="form-control" name="listdesc" ng-model="newproperty.listdesc"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" for="pool_spa">Pool or Spa?</label>
+                                    <div class="col-sm-8">
+                                        <input type="radio" class="radio form-control" name="pool_spa" ng-model="newproperty.pool_spa" value="1" /><span class="radio-option">Yes</span>
+                                        <input type="radio" class="radio form-control" name="pool_spa" ng-model="newproperty.pool_spa" value="0" /><span class="radio-option">No</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" for="occupancy">Occupancy Status</label>
+                                    <div class="col-sm-8">
+                                        <select class="form-control" name="occupancy" ng-model="newproperty.occupancy"/>
+                                            <option value="Vacant">Vacant</option>
+                                            <option value="Owner">Owner</option>
+                                            <option value="Tenants">Tenants</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" for="lockbox_combo">Lockbox Combo</label>
+                                    <div class="col-sm-8">
+                                      <input type="text" class="form-control" placeholder="Combo" name="lockbox_combo" ng-model="newproperty.lockbox_combo"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" for="alarm_code">Alarm Code</label>
+                                    <div class="col-sm-8">
+                                      <input type="text" class="form-control" placeholder="Code" name="alarm_code" ng-model="newproperty.alarm_code"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" for="asset_manager">Asset Manager</label>
+                                    <div class="col-sm-8">
+                                        <select class="form-control" name="asset_manager" ng-model="newproperty.asset_manager"/>
+                                            <option value="Codrin">Codrin</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" for="purchase_close_date">Purchase Close Date</label>
+                                    <div class="col-sm-8">
+                                      <input type="date" class="form-control" placeholder="yyyy-MM-dd" name="purchase_close_date" ng-model="newproperty.purchase_close_date"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" for="purchase_cost">Purchase Cost</label>
+                                    <div class="col-sm-8">
+                                      <input type="text" class="form-control" placeholder="$$$" name="purchase_cost" ng-model="newproperty.purchase_cost"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" for="entity_vesting">Entity Vesting</label>
+                                    <div class="col-sm-8">
+                                        <select class="form-control" name="entity_vesting" ng-model="newproperty.entity_vesting"/>
+                                            <option value="SC Inc.">SC Inc.</option>
+                                            <option value="HEF Inc.">HEF Inc.</option>
+                                            <option value="NLP Inc.">NLP Inc.</option>
+                                            <option value="trust">trust</option>
+                                            <option value="other">other</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" for="lender">Lender</label>
+                                    <div class="col-sm-8">
+                                        <select class="form-control" name="lender" ng-model="newproperty.lender"/>
+                                            <option value="Spinnaker">Spinnaker</option>
+                                            <option value="Anchor">Anchor</option>
+                                            <option value="Doug Carver">Doug Carver</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" for="rehab_estimate">Rehab Estimate</label>
+                                    <div class="col-sm-8">
+                                      <input type="text" class="form-control" placeholder="$$$" name="rehab_estimate" ng-model="newproperty.rehab_estimate"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" for="arv">ARV</label>
+                                    <div class="col-sm-8">
+                                      <input type="text" class="form-control" placeholder="$$$" name="arv" ng-model="newproperty.arv"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" for="is_listed">Listed?</label>
+                                    <div class="col-sm-8">
+                                        <input type="radio" class="radio form-control" name="is_listed" ng-model="newproperty.is_listed" value="1" /><span class="radio-option">Yes</span>
+                                        <input type="radio" class="radio form-control" name="is_listed" ng-model="newproperty.is_listed" value="0" /><span class="radio-option">No</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" for="listing_date">Listing Date</label>
+                                    <div class="col-sm-8">
+                                      <input type="date" class="form-control" placeholder="yyyy-MM-dd" name="listing_date" ng-model="newproperty.listing_date"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" for="list_price">Listing Price</label>
+                                    <div class="col-sm-8">
+                                      <input type="text" class="form-control" placeholder="$$$" name="list_price" ng-model="newproperty.list_price"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" for="escrow_price">Escrow Price</label>
+                                    <div class="col-sm-8">
+                                      <input type="text" class="form-control" placeholder="$$$" name="escrow_price" ng-model="newproperty.escrow_price"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" for="listing_date">Sale Close Date</label>
+                                    <div class="col-sm-8">
+                                      <input type="date" class="form-control" placeholder="yyyy-MM-dd" name="sale_close_date" ng-model="newproperty.sale_close_date"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label no-padding-right" for="images">Images</label>
+                                    <div class="col-sm-8">
+                                      <input type="file" id="file" name="file" accept="image/*" file-model="myFile" ng-model="newproperty.images" multiple>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-8 col-sm-offset-4">
+                                        <button id="form-submit-button" type="submit" class="width-35 pull-left col-sm-5 btn btn-lg btn-primary"  data-ng-disabled="newPropertyForm.$invalid" ng-click="uploadFile()">
+                                            Create
+                                        </button>
+                                    </div>
+                                </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.page-content -->

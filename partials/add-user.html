@@ -1,0 +1,89 @@
+<div class="breadcrumbs" id="breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <a href="/">Home</a>
+        </li>
+        <li class="active">Add A User</li>
+    </ul>
+</div>
+<div id="form-loading" ng-hide="isLoggedIn()">
+  </div>
+<div class="page-content">
+  <div class="container">
+      <div class="row">
+          <div class="col-sm-10 col-sm-offset-1">
+              <div>
+                  <div>
+                      <div>
+                          <h4 class="page-header">
+                              Add A User
+                          </h4>
+                          <br/>
+                          <div class="col-sm-8">
+                            <form name="signupForm" class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label no-padding-right" for="email">Email</label>
+                                    <div class="col-sm-7">
+
+                                            <input type="email" class="form-control" placeholder="Email" name="email" ng-model="signup.email" focus required/>
+                                            <span ng-show="signupForm.email.$error.email" class="help-inline">Email is not valid</span>
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label no-padding-right" for="password">Password</label>
+                                    <div class="col-sm-7">
+
+                                    <input type="password" class="form-control" name="password" placeholder="Password" ng-model="signup.password" required/>
+                                    <small class="errorMessage" data-ng-show="signupForm.password.$dirty && signupForm.password.$invalid"> Enter Password.</small>
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label no-padding-right" for="password2">Confirm Password</label>
+                                    <div class="col-sm-7">
+
+                                    <input type="password" class="form-control" name="password2" placeholder="Password Again" ng-model="signup.password2" password-match="signup.password" required/>
+                                    <small class="errorMessage" data-ng-show="signupForm.password2.$dirty && signupForm.password2.$error.required"> Enter password again.</small>
+
+                                   <small class="errorMessage" data-ng-show="signupForm.password2.$dirty && signupForm.password2.$error.passwordNoMatch && !signupForm.password2.$error.required"> Password do not match.</small>
+
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label no-padding-right" for="name">Name</label>
+                                    <div class="col-sm-7">
+
+                                    <input type="text" class="form-control" placeholder="Name" ng-model="signup.name" required/>
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label no-padding-right" for="phone">Phone</label>
+                                    <div class="col-sm-7">
+
+                                    <input type="text" class="form-control" placeholder="Phone" name="phone" ng-model="signup.phone"/>
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <span class="lbl col-sm-5"> </span>
+                                    <div class="col-sm-7">
+                                        <button type="submit" class="pull-right btn btn-sm btn-primary" ng-click="signUp(signup)" data-ng-disabled="signupForm.$invalid">
+                                            Add User
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                </div>
+                            </form>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+</div>
+<!-- /.page-content -->

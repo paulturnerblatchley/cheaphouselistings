@@ -1,84 +1,235 @@
-<div class="home-container">
-	<div id="bg" class="bg"></div>
-	<div class="jumbotron text-center">
-		<div class="container-fluid">
-			<div class="row">
-				<h1 class="col-sm-12">Structured Capital</h1>
-			</div>
-			<div class="row">
-				<p class="col-md-8 col-md-offset-2">Get Access to All of Your Investment Properties Here</p>
-			</div>
-			<div class="row">
-				<div class="col-sm-12">
-					<a href="/#/login"><button class="btn btn-primary btn-lg">SIGN IN</button></a>
-				</div>
-			</div>
-		</div>
+<div class="home" ng-controller="authCtrl" >
+	<div id="form-loading" ng-hide="isLoggedIn()">
 	</div>
-	<main class="home-content">
-		<div class="container-fluid">
-			<div class="row">
-				<h2 class="col-sm-6">Find a property near you</h2>
-			</div>
-			<div class="search-form-box">
-				<form ng-submit="setParams(city,priceQ,beds,baths)" ng-controller="ListingCtrl" name="home-search" class="container-fluid" role="form">
-					<div class="form-group city-search col-sm-3">
-						<input class="form-control" type="text" placeholder="City" ng-model="city">
-					</div>
-					<div class="form-group price-search col-sm-3">
-						<select class="form-control" name="cost" ng-model="priceQ" ng-options="option.value as option.name for option in priceOptions">
-						</select>
-					</div>
-					<div class="form-group bed-search col-sm-2">
-						<select class="form-control" name="beds" ng-model="beds" ng-options="option.value as option.name for option in bedOptions">
-						</select>
-					</div>
-					<div class="form-group bath-search col-sm-2">
-						<select class="form-control" name="baths" ng-model="baths" ng-options="option.value as option.name for option in bathOptions">
-						</select>
-					</div>
-					<div class="form-group submit-search col-sm-2">
-						<button class="btn btn-primary" type="submit">Submit</button>
-					</div>
-				</form>
-			</div>
-			<div class="row col-sm-12">
-				<div class="row home-info-section">
-					<div class="col-md-6 nice-house-top">
-
-					</div>
-					<div class="col-md-6">
-						<h3>Discounted Wholesale Properties</h3>
-						<p class="home-info">Repossessed houses and foreclosures, properties in need of major repairs, owners under financial hardship. Whatever the reason, it means cheap house listings for you. We're talking about 25&ndash;75% off of the original price of these homes. The perfect selection of properties for you to yield a high Return On Investment. </p>
-					</div>
+    <div id="restoring">
+    </div>
+	<div ng-show="isLoggedIn()">
+		<div class="property-viewer clearfix" ng-controller="PropertyCtrl">
+	        <ng-map ng-controller="MapCtrl as vm" id="property-map" class="prop-map" zoom-to-include-markers="auto" zoom="12" center="34.1422725,-117.30587750000001" default-style="false" styles='[
+    {"featureType": "water","elementType": "geometry.fill","stylers": [{"color": "#d3d3d3"}]}, {
+        "featureType": "transit",
+        "stylers": [
+            {
+                "color": "#808080"
+            },
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "road.highway",
+        "elementType": "geometry.stroke",
+        "stylers": [
+            {
+                "visibility": "on"
+            },
+            {
+                "color": "#b3b3b3"
+            }
+        ]
+    },
+    {
+        "featureType": "road.highway",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#ffffff"
+            }
+        ]
+    },
+    {
+        "featureType": "road.local",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "visibility": "on"
+            },
+            {
+                "color": "#ffffff"
+            },
+            {
+                "weight": 1.8
+            }
+        ]
+    },
+    {
+        "featureType": "road.local",
+        "elementType": "geometry.stroke",
+        "stylers": [
+            {
+                "color": "#d7d7d7"
+            }
+        ]
+    },
+    {
+        "featureType": "poi",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "visibility": "on"
+            },
+            {
+                "color": "#ebebeb"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#a7a7a7"
+            }
+        ]
+    },
+    {
+        "featureType": "road.arterial",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#ffffff"
+            }
+        ]
+    },
+    {
+        "featureType": "road.arterial",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#ffffff"
+            }
+        ]
+    },
+    {
+        "featureType": "landscape",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "visibility": "on"
+            },
+            {
+                "color": "#efefef"
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "labels.text.fill",
+        "stylers": [
+            {
+                "color": "#696969"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative",
+        "elementType": "labels.text.fill",
+        "stylers": [
+            {
+                "visibility": "on"
+            },
+            {
+                "color": "#737373"
+            }
+        ]
+    },
+    {
+        "featureType": "poi",
+        "elementType": "labels.icon",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "poi",
+        "elementType": "labels",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "road.arterial",
+        "elementType": "geometry.stroke",
+        "stylers": [
+            {
+                "color": "#d6d6d6"
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "labels.icon",
+        "stylers": [
+            {
+                "visibility": "on"
+            }
+        ]
+    },
+    {},
+    {
+        "featureType": "poi",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#dadada"
+            }
+        ]
+    }
+]'>
+	        	<marker id="pin{{property.pid}}" ng-repeat="property in properties" position="{{property.latlng}}" on-click="vm.showDetails(property.pid,property.latlng)" icon="{url:'../img/map-pin_{{property.phase}}.png',
+    			scaledSize:[20,32],
+    			origin: [0,0],
+    			anchor: [0,32]}"
+          animation="DROP">
+    			</marker>
+	        </ng-map>
+            <i id="info-box-switch" ng-click="closeBox()" class="glyphicon glyphicon-circle-arrow-right flip"></i>
+	        <div id="info-box" class="add-info" >
+	        	<div class="row" ng-repeat="property in filteredProperties = (properties | pidFilter:addInfo)" ng-show="property">
+				    <div class="row">
+				    <h4>Rehab Details: {{property.address}}</h4>
+					   <div class="col-sm-5 rehab-titles">
+						  <ul>
+							<li>Purchase Cost:</li>
+							<li>Purchase Date:</li>
+							<li>Entity Vesting:</li>
+							<li>Lender:</li>
+							<li>Rehab Estimate:</li>
+							<li>ARV:</li>
+						  </ul>
+					   </div>
+					   <div class="col-sm-7">
+						  <ul>
+							<li>{{property.purchase_cost || 'Not Defined'}}</li>
+							<li>{{property.purchase_date || 'Not Defined'}}</li>
+							<li>{{property.entity_vesting || 'Not Defined'}}</li>
+							<li>{{property.lender || 'Not Defined'}}</li>
+							<li>{{property.rehab_estimate || 'Not Defined'}}</li>
+                            <li>{{property.arv || 'Not Defined'}}</li>
+						  </ul>
+					   </div>
+				    </div>
+                    <a href="/#/properties/{{property.pid}}/rehab">
+					   <button class="btn btn-primary">View Rehab Details</button>
+                    </a>
 				</div>
-				<div class="row home-info-section">
-					<div class="col-md-6 pull-right nice-house-middle">
-
-					</div>
-					<div class="col-md-6 pull-left">
-						<h3>Before they go public</h3>
-						<p class="home-info">Many of these properties can be accessed through bank sales or by finding the perfect seller, but that can be a time consuming and competitive affair. We do the work for you and get the listings to you before anyone else has a chance.</p>
-					</div>
+				<div id="select-a-property">
+					<h3>Please select a property</h3>
 				</div>
-				<div class="row home-info-section">
-					<div class="col-md-6 nice-house-bottom">
-
-					</div>
-					<div class="col-md-6">
-						<h3>Exclusive for our members</h3>
-						<p class="home-info">Once you join, you'll have access to  our exclusive collection of hand-picked properties that are available only to members for a limited time. You'll have to act fast because these properties will be gone within a matter of days, the deals are just too good! Get a head start on some of the best cheap house listings in the area. Sign up today!</p>
-					</div>
-				</div>
-				<div class="row final-cta">
-					<div class="col-sm-4 col-sm-offset-2">
-						<h1>Get Access Now</h1>
-					</div>
-					<div class="col-sm-4">
-						<a href="/#/signup"><button class="btn btn-lg btn-secondary col-sm-12">Sign Up</button></a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</main>
+	        </div>
+      	</div>
+        <div class="home-table" ng-controller="PropertyCtrl">
+            <div class="hide-map">
+                <i id="hide-map-switch" ng-click="hideMap()" class="glyphicon glyphicon-circle-arrow-up"></i>
+                <i id="filter-switch" ng-click="toggleFiltering()" class="glyphicon glyphicon-filter"></i>
+                <i id="reset" ng-click="reset()" class="glyphicon glyphicon-refresh"></i>
+            </div>
+            <div id="grid1" class="grid" ui-grid="gridOptions" ui-grid-move-columns ui-grid-resize-columns ui-grid-selection ui-grid-save-state></div>
+        </div>
+	</div>
 </div>

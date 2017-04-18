@@ -1,11 +1,9 @@
-<div ng-controller="ListingCtrl">
+<div ng-controller="PropertyCtrl">
 	<div class="breadcrumbs" id="breadcrumbs">
 	    <ul class="breadcrumb">
 	        <li>
-	            <a href="#">Home</a>
+	            <a href="#">Properties</a>
 	        </li>
-	        <li>
-	        	<a href="#/listings">Listings</a></li>
 	        <li class="active">Search Results</li>
 	    </ul>
 	</div>
@@ -14,53 +12,39 @@
 			<div class="page-header">
 				<h1>Results</h1>
 			</div>
-			<div ng-hide="isLoggedIn()" ng-controller="authCtrl">
-				<h2><a href="/#/login">Log In</a> to view all results.</h2>
 	      <br>
-	      <div ng-hide="noResults()" class="featured-listing" ng-controller="ListingCtrl">
-	        <h3>Featured Result</h3>
-	        <div class="col-sm-6">
-	          <img class="img-responsive" ng-repeat="image in searchRes[0].images | limitTo:1" ng-if="image != ''" ng-src="../api/v1/uploads/{{image}}"/>
-	        </div>
-	        <div class="col-sm-6">
-	          <h4>{{searchRes[0].address}} in {{searchRes[0].city}}</h4>
-	          <h5>Offered at ${{searchRes[0].price}}</h5>
-	          <p>{{searchRes[0].listdesc}}</p>
-	          <ul class="list-details">
-	            <li>Beds: {{searchRes[0].beds}}</li>
-	            <li>Baths: {{searchRes[0].baths}}</li>
-	            <li>Square Footage: {{searchRes[0].sqft}}</li>
-	            <li>Lot Size: {{searchRes[0].lotsize}}</li>
-	          </ul>
-	        </div>
-	      </div>
+			<div ng-show="noResults()" ng-controller="PropertyCtrl">
+				<p>There were no results within your search criteria.</p>
 			</div>
-			<div ng-show="isLoggedIn()" ng-controller="authCtrl">
-				<div ng-show="noResults()" ng-controller="ListingCtrl">
-					<p>There were no results within your search criteria.</p>
-				</div>
-				<div ng-hide="noResults()">
-					<div class="clearfix listing-display-box" ng-repeat="listing in searchRes">
-						<div class="clearfix">
-							<h2><a ng-href="/#/listings/{{listing.lid}}">{{listing.address}}</a></h2>
-							<div class="image-box">
-								<img class="img-responsive" ng-repeat="image in listing.images | limitTo:1" 
-								ng-if="image != ''" ng-src="../api/v1/uploads/{{image}}" />
-							</div>
-
-							<h4>{{listing.city}}</h4>
-							<h5>Offered at ${{listing.price}}</h5>
-							<ul class="list-details">
-								<li>Beds: {{listing.beds}}</li>
-								<li>Baths: {{listing.baths}}</li>
-								<li>Square Footage: {{listing.sqft}}</li>
-								<li>Lot Size: {{listing.lotsize}}</li>
-							</ul>
-							<p class="col-sm-6">{{listing.listdesc}}</p>
-						</div>
-						<hr>
-					</div>
-				</div>
+			<div class="search-results table-responsive" ng-hide="noResults()">
+				<table class="table table-striped header-fixed">
+					<thead>
+						<tr>
+							<th>Phase</th>
+							<th>Property #</th>
+							<th>Address</th>
+							<th>City</th>
+							<th>Zip</th>
+							<th>Square Feet</th>
+							<th>Lot Size</th>
+							<th>Beds</th>
+							<th>Baths</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="property in searchRes" ng-click="linkToSingleFromPid(property.pid)">
+							<td class="{{property.phase}}">{{property.phase}}</td>
+							<td>{{property.pid}}</td>
+							<td>{{property.address}}</td>
+							<td>{{property.city}}</td>
+							<td>{{property.zip}}</td>
+							<td>{{property.sqft}}</td>
+							<td>{{property.lotsize}}</td>
+							<td>{{property.beds}}</td>
+							<td>{{property.baths}}</td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</div>

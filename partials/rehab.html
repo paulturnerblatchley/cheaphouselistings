@@ -1,0 +1,147 @@
+<div class="breadcrumbs" id="breadcrumbs">
+  <ul class="breadcrumb">
+    <li><a href="#">Properties</a></li>
+    <li><a ng-href="#/properties/{{s.pid}}">{{s.address}}</a></li>
+    <li class="active">Rehab</li>
+  </ul>
+</div>
+<div id="form-loading">
+</div>
+<div class="page-content rehab-page">
+  <div class="col-sm-12">
+    <div class="page-header clearfix">
+      <div class="col-sm-6">
+        <h1>{{s.address}}<br> {{s.city}}, CA {{s.zip}}</h1>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+      <div class="info-table col-sm-12" ng-controller="RehabCtrl">
+      <div class="section-header col-xs-12">
+        <h4>
+          <i ng-click="toggle($event)" id="t10-toggle" class="glyphicon glyphicon-minus table-toggle"></i>
+          Rehab Gantt Chart
+        </h4>
+      </div>
+      <div  id="t10-toggle-table" 
+            gantt 
+            data=data
+            sort-mode="options.sortMode"
+            api="registerApi">
+        <gantt-table></gantt-table>
+        <gantt-movable></gantt-movable>
+        <gantt-tooltips></gantt-tooltips>
+        <gantt-sortable enabled="true"></gantt-sortable>
+      </div>
+    </div>
+  </div>
+    <div class="row">
+      <div class="info-table col-sm-6" ng-controller="RehabCtrl">
+        <div class="header-wrap">
+          <div class="section-header col-xs-4">
+            <h4><i ng-click="toggle($event)" id="t11-toggle" class="glyphicon glyphicon-minus table-toggle"></i>Planned Rehabs</h4>
+          </div>
+          <div class="col-xs-4 rehab_table_header_dates">
+            Start Date: <input ng-change="updateRehab(r,'rehabs', 'planned_start', r.planned_start)" class="invisible-form header_date" type="date" ng-model="r.planned_start">
+          </div>
+          <div class="col-xs-4 rehab_table_header_dates">
+            Finish Date: <input ng-change="updateRehab(r, 'rehabs', 'planned_finish', r.planned_finish)" class="invisible-form header_date" type="date" ng-model="r.planned_finish">
+          </div>
+        </div>
+        <div>
+          <table id="t11-toggle-table" class="list-details rehab-table table table-bordered">
+            <thead>
+              <tr>
+                <th class="col-xs-2">Rehab</th>
+                <th class="col-xs-2">Start</th>
+                <th class="col-xs-2">Finish</th>
+                <th class="col-xs-2">Cost</th>
+                <th class="col-xs-4">Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="(k,v) in r" ng-if="isValueAnArray(v)">
+                <td class="col-xs-2">{{v.name}}</td> 
+                <td class="col-xs-2"><input ng-change="updateRehab(r,k, k + '_planned_start', v.planned_start)" class="invisible-form" type="date" ng-model="v.planned_start"></td>
+                <td class="col-xs-2"><input ng-change="updateRehab(r,k, k + '_planned_finish', v.planned_finish)" class="invisible-form" type="date" ng-model="v.planned_finish"></td>
+                <td class="col-xs-2"><input ng-change="updateRehab(r,k, k + '_planned_cost', v.planned_cost)" class="invisible-form" type="text" ng-model="v.planned_cost"></td>
+                <td class="col-xs-4"><textarea class="invisible-form" ng-model="v.notes" rows="1" ng-change="updateRehab(r,k, k + '_notes', v.notes)"></textarea></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="info-table col-sm-6" ng-controller="RehabCtrl">
+        <div class="header-wrap">
+          <div class="section-header col-xs-4">
+            <h4><i ng-click="toggle($event)" id="t12-toggle" class="glyphicon glyphicon-minus table-toggle"></i>Actual Rehabs</h4>
+          </div>
+          <div class="col-xs-4 rehab_table_header_dates">
+            Start Date: <input ng-change="updateRehab(r,'rehabs', 'actual_start', r.actual_start)" class="invisible-form header_date" type="date" ng-model="r.actual_start">
+          </div>
+          <div class="col-xs-4 rehab_table_header_dates">
+            Finish Date: <input ng-change="updateRehab(r,'rehabs', 'actual_finish', r.actual_finish)" class="invisible-form header_date" type="date" ng-model="r.actual_finish">
+          </div>
+        </div>
+        <div>
+          <table id="t12-toggle-table" class="list-details rehab-table table table-bordered">
+            <thead>
+              <tr>
+                <th class="col-xs-2">Rehab</th>
+                <th class="col-xs-2">Start</th>
+                <th class="col-xs-2">Finish</th>
+                <th class="col-xs-2">Cost</th>
+                <th class="col-xs-4">Contractor</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="(k,v) in r" ng-if="isValueAnArray(v)">
+                <td class="col-xs-2">{{v.name}}</td> 
+                <td class="col-xs-2">
+                  <input ng-change="updateRehab(r,k, k + '_actual_start', v.actual_start)" class="invisible-form" type="date" ng-model="v.actual_start">
+                </td>
+                <td class="col-xs-2">
+                  <input ng-change="updateRehab(r,k, k + '_actual_finish', v.actual_finish)" class="invisible-form" type="date" ng-model="v.actual_finish">
+                </td>
+                <td class="col-xs-2">
+                  <input ng-change="updateRehab(r,k, k + '_actual_cost', v.actual_cost)" class="invisible-form" type="text" ng-model="v.actual_cost">
+                </td>
+                <td class="col-xs-4">
+                  <input ng-change="updateRehab(r,k, k + '_contractor', v.contractor)" class="invisible-form" type="text" ng-model="v.contractor">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!--div class="row">
+      <div class="info-table col-sm-12" ng-controller="RehabCtrl">
+        <div class="section-header">
+          <h4 class="comment-header"><i ng-click="toggle($event)" id="t6-toggle" class="glyphicon glyphicon-minus table-toggle"></i>Rehab Activity Log</h4>
+        </div>
+          <div id="t6-toggle-table">
+            <div id="comment-box" class="comments">
+              <div class="single-comment" ng-repeat="comment in comments">
+                <div class="meta">
+                  <p class="author">{{comment.username}}</p>
+                  <p class="time">{{comment.created}}</p>
+                </div>
+                <p class="comment">{{comment.comment}}</p>
+              </div>
+            </div>
+            <form name="newCommentForm" class="form-horizontal" role="form">
+              <div class="form-group no-margin">
+                <div class="comment-box clearfix">
+                  <textarea id="comment-form" rows="2" cols="50" placeholder="Add A Comment" class="col-xs-9" name="comment" ng-model="newcomment.comment" required></textarea>
+                  <button id="form-submit-button" type="submit" class="col-xs-3 btn btn-lg btn-primary" ng-click="newComment(newcomment)" data-ng-disabled="newCommentForm.$invalid">
+                    Post
+                  </button>
+                </div>
+              </div>
+            </form>
+            </div>
+        </div>
+    </div-->
+</div>

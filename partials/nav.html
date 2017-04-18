@@ -7,8 +7,8 @@
       <span class="icon-bar"></span>
     </button>
     <a class="navbar-brand navbar-collapse collapse" aria-expanded="false" rel="home" title="Home" href="/">Structured Capital</a>
-    <div class="search-bar pull-left">
-      <form ng-submit="setParams(city)" ng-controller="ListingCtrl">
+    <div ng-show="isLoggedIn()" class="search-bar pull-left">
+      <form ng-submit="setParams(city)" ng-controller="PropertyCtrl">
         <input type="text" ng-model="city" placeholder="Search by City..." />
         <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
       </form>
@@ -18,9 +18,8 @@
     <ul class="nav navbar-nav pull-right" ng-click="hideMenu()">
       <li class="mobile-brand" ><a rel="home" title="Sign Up" href="/">Home</a></li>
       <li ng-show="isLoggedIn()"><a title="dashboard" href="/#/dashboard">{{name}}</a></li>
-      <li> <a title="listings" href="/#/listings">Listings</a></li>
-      <li ng-show="isAdmin()"><a title="new-listing" href="/#/listings/new-listing">Create A Listing</a></li>
-      <li ng-hide="isLoggedIn()"><a title="Login" href="/#/login">Log In</a></li>
+      <li ng-show="isAdmin()" ng-show="isLoggedIn()"><a title="new-property" href="/#/properties/new-property">Create A Property</a></li>
+      <li ng-hide="isLoggedIn()"><a title="Login" href="/#/login">Login</a></li>
       <li ng-show="isLoggedIn()"><a title="Logout" ng-click="logout()">Log Out</a></li>
     </ul>
   </div>
